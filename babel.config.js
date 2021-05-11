@@ -10,7 +10,8 @@ module.exports = function (api) {
 
   const plugins = [
     '@babel/plugin-transform-runtime',
-    '@babel/plugin-proposal-class-properties'
+    '@babel/plugin-proposal-class-properties',
+    // ['@babel/plugin-proposal-properties', { 'legacy': true }]
   ];
 
   const env = {

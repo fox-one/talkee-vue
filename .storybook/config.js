@@ -1,13 +1,13 @@
 import { addDecorator, configure } from '@storybook/vue';
-import { setOptions } from '@storybook/addon-options';
+import { withOptions } from '@storybook/addon-options';
 import { setConsoleOptions } from '@storybook/addon-console';
-import { addReadme } from 'storybook-readme';
+import { addReadme } from 'storybook-readme/vue';
 
 setConsoleOptions({
   panelExclude: [],
 });
 addDecorator(addReadme);
-setOptions({
+withOptions({
   name: 'talkee-vue'
 });
 

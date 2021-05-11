@@ -18,4 +18,8 @@ storiesOf('Reply', module)
   })
   .add('with text', () => ({
     render: h => h(Reply, { props: { msg: 'Hello Reply' } })
+  }))
+  .add('test1', () => ({
+    components: { Reply },
+    template: `<reply msg='Hello Reply' />`
   }));

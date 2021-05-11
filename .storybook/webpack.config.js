@@ -5,13 +5,11 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /.vue$/,
-        loader: 'vue-loader'
-      },
-      {
-        test: /.js$/,
+        test: /.(js|ts)$/,
         use: [
-          {loader: 'babel-loader'}
+          {
+            loader: 'babel-loader'
+          }
         ],
         exclude: /node_modules/
       },
@@ -28,19 +26,9 @@ module.exports = {
         ]
       },
       {
-        test: /.ts$/,
-        use: [
-          {
-            loader: require.resolve('awesome-typescript-loader'),
-          }
-        ]
-      },
-      
-      {
         test: /.(css|less)$/,
-        use: ['style-loader', 'css-loader', 'less-loader']
+        use: ['vue-style-loader', 'style-loader', 'css-loader', 'less-loader']
       }
-
     ],
   },
   plugins: [],
