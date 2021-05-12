@@ -1,7 +1,3 @@
-<docs>
-  Docs inside vue module 
-</docs>
-
 <template>
   <div>
     {{ msg }}
@@ -27,6 +23,10 @@ export default {
 // export default class Reply extends Vue {
 //   @Prop({ default: '', type: String })
 //   public msg!: string;
+
+//   public test() {
+//     console.info(123555);
+//   }
 // }
 </script>
 
