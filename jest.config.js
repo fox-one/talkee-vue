@@ -8,26 +8,25 @@ module.exports = {
   moduleFileExtensions: [
     "js",
     "json",
-    "jsx",
     "ts",
-    "tsx",
-    "node"
+    "vue"
   ],
 
   roots: [
     "<rootDir>/src"
   ],
 
-  testRegex: "(test|__test__)/.*.test.(tsx|ts|jsx|js)?$",
+  testRegex: "(test|__test__)/.*.test.(vue|tsx|ts|jsx|js)?$",
 
   
   transform: {
-    "^.+.(tsx|ts)?$": "ts-jest"
+    "^.+.ts$": "ts-jest",
+    '^.+.vue$': 'vue-jest'
   },
 
 
   moduleNameMapper: {
-    "^@utils(.*)$": "<rootDir>/src/utils$1",
+    "^@/(.*)$": "<rootDir>/src/$1",
     "^.+.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$": "jest-transform-stub"
   }
 };

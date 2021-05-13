@@ -27,7 +27,7 @@ module.exports = {
       },
       {
         test: /.(css|less)$/,
-        use: ['vue-style-loader', 'style-loader', 'css-loader', 'less-loader']
+        use: ['style-loader', 'css-loader', 'less-loader']
       }
     ],
   },
@@ -37,6 +37,6 @@ module.exports = {
     alias: {
       '@utils': path.resolve(__dirname, '../src/utils')
     },
-    extensions: [".vue", ".ts", ".tsx", ".js", ".jsx", ".md", ".less", ".css"]
+    extensions: [".ts", ".tsx", ".js", ".jsx", ".md", ".less", ".css"]
   }
 };

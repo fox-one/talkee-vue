@@ -3,7 +3,7 @@
 const path = require('path');
 
 module.exports = {
-  type: 'component-react', // 项目类型，请勿任意变动 (project type, please don't modify)
+  type: 'component-vue', // 项目类型，请勿任意变动 (project type, please don't modify)
 
   dev: {
     port: 6200, // 开发服务端口号 (dev-server port)
