@@ -44,10 +44,12 @@
   "keywords": [],
   "author": "",
   "peerDependencies": {
+    "@links-japan/talkee": "latest",
     "vue": "2.6.x"
   },
   "license": "MIT",
   "dependencies": {
+    "@links-japan/talkee": "^0.1.7",
     "classnames": "~2.2.6"
   },
   "devDependencies": {
