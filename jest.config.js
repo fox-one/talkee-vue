@@ -16,17 +16,15 @@ module.exports = {
     "<rootDir>/src"
   ],
 
-  testRegex: "(test|__test__)/.*.test.(vue|tsx|ts|jsx|js)?$",
+  testRegex: "(test|__test__)/.*.test.(vue|ts|js)?$",
 
-  
   transform: {
     "^.+.ts$": "ts-jest",
     '^.+.vue$': 'vue-jest'
   },
 
-
   moduleNameMapper: {
-    "^@/(.*)$": "<rootDir>/src/$1",
+    "^@utils(.*)$": "<rootDir>/src/utils$1",
     "^.+.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$": "jest-transform-stub"
   }
 };

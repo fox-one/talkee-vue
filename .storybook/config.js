@@ -3,10 +3,10 @@ import { withOptions } from '@storybook/addon-options';
 import { setConsoleOptions } from '@storybook/addon-console';
 import { addReadme } from 'storybook-readme/vue';
 
-setConsoleOptions({
-  panelExclude: [],
-});
 addDecorator(addReadme);
+setConsoleOptions({
+  panelExclude: []
+});
 withOptions({
   name: 'talkee-vue'
 });

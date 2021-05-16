@@ -34,9 +34,9 @@ module.exports = {
     preflight: {
       typescript: true, // 构建时是否处理ts或tsx文件 (whether or not process the ts or tsx files)
       test: true, // 构建时是否进行单元测试 (whether or not process unit-test)
-      eslint: true, // 构建时是否进行eslint检测 (whether or not process eslint fix and check)
+      eslint: true, // 构建时是否进行eslint检测 (whether or not process eslint checking)
       prettier: true, // 构建时是否进行prettier检测 (whether or not process prettier checking)
-      stylelint: true, // 构建时是否进行stylelint检测 (whether or not process style lint check)
+      stylelint: true, // 构建时是否进行stylelint检测 (whether or not process stylelint checking)
     }
   },
 
@@ -55,10 +55,10 @@ module.exports = {
 
     preflight: {
       test: true, // 发布前是否进行单元测试 (whether or not process unit-test)
-      eslint: true, // 发布前是否进行eslint检测 (whether or not process eslint fix and check)
+      eslint: true, // 发布前是否进行eslint检测 (whether or not process eslint checking)
       prettier: true, // 发布前是否进行prettier检测 (whether or not process prettier checking)
-      stylelint: true, // 发布前是否进行stylelint检测 (whether or not process style lint check)
-      commitlint: true, // 发布前是否进行commitlint检测 (whether or not process commit lint check)
+      stylelint: true, // 发布前是否进行stylelint检测 (whether or not process stylelint checking)
+      commitlint: true, // 发布前是否进行commitlint检测 (whether or not process commitlint checking)
       branch: 'master' // 发布前进行分支检测，设置为空字符串则不会检测 (only can release in this branch, set empty string to ignore this check)
     }
   },
@@ -77,8 +77,8 @@ module.exports = {
     // 样式文件类型 (stylesheet type)
     stylesheet: 'less',
 
-    // [是否生成ReadMe文件, 创建md 或 mdx文件] ([whether or not README.md, generate mdx or md file])
-    readme: [true, 'md']
+    // 是否生成README.md (whether or not generate README.md)
+    readme: true
   },
 
   plugins: []

@@ -6,7 +6,6 @@ dist/
 server/
 demo/
 node_modules/
-.docz/
 .storybook/
 .out/
 **/__test__/

@@ -7,9 +7,7 @@ module.exports = {
       {
         test: /.(js|ts)$/,
         use: [
-          {
-            loader: 'babel-loader'
-          }
+          {loader: 'babel-loader'}
         ],
         exclude: /node_modules/
       },
@@ -25,10 +23,12 @@ module.exports = {
           }
         ]
       },
+      
       {
         test: /.(css|less)$/,
         use: ['style-loader', 'css-loader', 'less-loader']
       }
+
     ],
   },
   plugins: [],
