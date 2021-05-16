@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Reply renders correctly 1`] = `
+exports[`Talkee renders correctly 1`] = `
 VueWrapper {
   "_emitted": Object {},
   "_emittedByOrder": Array [],
