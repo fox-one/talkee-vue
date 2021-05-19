@@ -2,6 +2,8 @@
 
 [English](./README.md) | 简体中文
 
+[示例](https://fox-one.github.io/talkee-vue/#/)
+
 ## 快速开始
 ### 安装依赖
 ```shell

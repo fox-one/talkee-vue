@@ -3,10 +3,10 @@ import Talkee from './Talkee';
 import type { VueConstructor } from 'vue';
 
 install.installed = false;
-function install (Vue: VueConstructor<Vue>) {
+function install(Vue: VueConstructor<Vue>) {
   if (install.installed) return;
   install.installed = true;
-  Vue.component('FTalkee', Talkee);
+  Vue.component('Talkee', Talkee);
 }
 
 let GlobalVue;
