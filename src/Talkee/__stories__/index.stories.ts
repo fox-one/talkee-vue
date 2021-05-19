@@ -21,8 +21,8 @@ storiesOf('Talkee', module)
     components: {
       Talkee
     },
-    template: `<Talkee
-      :siteId="1"
+    template: `<talkee
+      :siteId="6"
       :slug="1234"
       apiBase="https://talkee-test-api.firesbox.com/api"
       loginBase="https://mixin-oauth.firesbox.com"
@@ -33,7 +33,7 @@ storiesOf('Talkee', module)
     components: {
       Talkee
     },
-    template: `<Talkee
+    template: `<talkee
       :siteId="4"
       :slug="234455"
       apiBase="https://links-login.chrove.com/api"
