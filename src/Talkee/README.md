@@ -13,6 +13,7 @@
       apiBase="https://talkee-test-api.firesbox.com/api"
       loginBase="https://mixin-oauth.firesbox.com"
       clientId="2827d81f-6ae0-4842-b92f-6576afe36863"
+      @resize="handleResize"
     />
   </div>
 </template>
@@ -21,6 +22,11 @@
   export default {
     data: {
       title: '帖子标题'
+    },
+    method: {
+      handleResize: function () {
+        console.info('resize!');
+      }
     }
   }
 </script>
