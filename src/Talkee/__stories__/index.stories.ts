@@ -26,7 +26,7 @@ storiesOf('Talkee', module)
       :slug="1234"
       apiBase="https://talkee-test-api.firesbox.com/api"
       loginBase="https://mixin-oauth.firesbox.com"
-      clientId="2827d81f-6ae0-4842-b92f-6576afe36863"
+      clientId="65fdd5af-5d3f-496a-9d62-b5cdb4d8396f"
     />`
   }))
   .add('Japan Dev', () => ({
