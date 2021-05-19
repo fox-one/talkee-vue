@@ -1729,12 +1729,13 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
-"@links-japan/talkee@^0.2.0-0":
-  version "0.2.0-0"
-  resolved "https://registry.yarnpkg.com/@links-japan/talkee/-/talkee-0.2.0-0.tgz#2b0f26fb5691af57c09fef170b1c58076fa26004"
-  integrity sha512-eX4nY/gkrs2JaTCzJdgjqh6T0JxX6EU+W/GRv8k9HU+oIsLT7IppE2B09LDHmRERWGwYw17GgSOyERv3XdjEkQ==
+"@links-japan/talkee@^0.2.0-3":
+  version "0.2.0-3"
+  resolved "https://registry.npmjs.org/@links-japan/talkee/-/talkee-0.2.0-3.tgz#c50900ff0639e7b867dbea806ce2178eeb6e0125"
+  integrity sha512-1uPDXbhUumveTbEJGUYB5tvIJPnBF+eP21btrBxoggBT8LG3JDWOBlctQ6zQ0JxWVkQgswz4V9Yu/TPSvORkUA==
   dependencies:
     axios "^0.21.1"
+    classnames "^2.3.1"
     lodash "^4.17.21"
 
 "@marionebl/sander@^0.6.0":
@@ -1824,10 +1825,10 @@
     "@nodelib/fs.scandir" "2.1.4"
     fastq "^1.6.0"
 
-"@omni-door/cli@^2.4.1":
-  version "2.4.1"
-  resolved "https://registry.yarnpkg.com/@omni-door/cli/-/cli-2.4.1.tgz#b461f1af10efe07647f4be545470536703c3f5b3"
-  integrity sha512-8Jr1La474gCa1u3rNQVfpQfBlJJn0fAhK3cn3sFq5rji0ornlbUovvVown11sw4VM3LxvwoL+yQ1Cd5p318Y0A==
+"@omni-door/cli@^2.4.3":
+  version "2.4.3"
+  resolved "https://registry.npmjs.org/@omni-door/cli/-/cli-2.4.3.tgz#7622bd89332db2646c7d8ecdbf118b47addf6c87"
+  integrity sha512-ovMa8A1i4oSDU12S+rrVCOkvyXB9dzWLhXeLjh8YRB0H0BNfC0K3q2/+xnSe3o4vf8uFJyCWjJ5grVWY7IYA2Q==
   dependencies:
     "@omni-door/utils" "~1.2.5"
     "@types/express" "4.17.8"
@@ -5231,7 +5232,7 @@ class-utils@^0.3.5:
     isobject "^3.0.0"
     static-extend "^0.1.1"
 
-classnames@^2.2.5:
+classnames@^2.2.5, classnames@^2.3.1:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.3.1.tgz#dfcfa3891e306ec1dad105d0e88f4417b8535e8e"
   integrity sha512-OlQdbZ7gLfGarSqxesMesDa5uz7KFbID8Kpq/SxIoNGDqY8lSYs0D+hhtBXhcdB3rcbXArFr7vlHheLk1voeNA==

@@ -7,7 +7,7 @@ module.exports = {
 
   dev: {
     port: 6200, // 开发服务端口号 (dev-server port)
-    // host: 'dev.domain.com', // 开发服务端host (dev-server host)
+    host: 'localhost', // 开发服务端host (dev-server host)
     serverType: 'storybook' // 开发服务类型 (dev-server type)
   },
 

@@ -17,9 +17,27 @@ storiesOf('Talkee', module)
       defaultViewport: 'iphone6'
     }
   })
-  .add('with text', () => ({
+  .add('China Dev', () => ({
     components: {
       Talkee
     },
-    template: `<Talkee>{{'Hello Talkee'}}</Talkee>`
+    template: `<Talkee
+      :siteId="1"
+      :slug="1234"
+      apiBase="https://talkee-test-api.firesbox.com/api"
+      loginBase="https://mixin-oauth.firesbox.com"
+      clientId="2827d81f-6ae0-4842-b92f-6576afe36863"
+    />`
+  }))
+  .add('Japan Dev', () => ({
+    components: {
+      Talkee
+    },
+    template: `<Talkee
+      :siteId="4"
+      :slug="234455"
+      apiBase="https://links-login.chrove.com/api"
+      loginBase="https://oauth.chrove.com"
+      clientId="bf07d6d6-4d15-46ab-b5e4-6e66fac1151e"
+    />`
   }));

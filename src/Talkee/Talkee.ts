@@ -3,44 +3,56 @@ import {
   Vue,
   Prop
 } from 'vue-property-decorator';
-import classnames from '@utils/classnames';
 import TalkeeSDK from '@links-japan/talkee';
+import classnames from '@utils/classnames';
 /* import types */
 import type { CreateElement, VNode } from 'vue';
 
 @Component
 export class Talkee extends Vue {
-  @Prop({ type: String, default: '' }) private className!: string;
+  @Prop({ type: String, default: '' }) private apiBase!: string;
+  @Prop({ type: String, default: '' }) private loginBase!: string;
+  @Prop({ type: String, default: 'talkee' }) private prefixCls!: string;
+  @Prop({ type: Number, default: 1 }) private siteId!: number;
+  @Prop({ type: Number, default: void 0 }) private slug!: number;
+  @Prop({ type: Boolean, default: true }) private expandable!: string;
+  @Prop({ type: Array, default: () => [] }) private tweetTags!: string[];
+
+  public get classes() {
+    return classnames(this.prefixCls);
+  }
 
   public mounted() {
+    if (!this.siteId || !this.slug || !this.apiBase || !this.loginBase) {
+      console.error('The [siteId], [slug], [apiBase] and [loginBase] is required!');
+      return;
+    }
+
     new TalkeeSDK({
       // required
-      siteId: 4, // site id. 1 is debug env
-      // slug: slug, // post slug. the unique id to identify posts
+      siteId: this.siteId, // site id. 1 is debug env
+      slug: this.slug, // post slug. the unique id to identify posts
       commentSelector: '#talkee', // selector for comments. should be a string or a dom object
 
       // optional
-      expandable: true, //
-      tweetTags: ['#LINKS', '#リンケス'] // tweet tags
+      prefixCls: this.prefixCls,
+      expandable: this.expandable,
+      tweetTags: this.tweetTags, // tweet tags
       // identitySelector: '#links-login',     // selector for identity.
-      // apiBase: apiBase,                     // alternative apiBase.
-      // loginUrl: loginUrl,                   // alternative login url.
+      apiBase: this.apiBase,                     // alternative apiBase.
+      loginBase: this.loginBase                   // alternative login url.
     });
   }
 
   public render(h: CreateElement): VNode {
-    const content = this.$slots.default;
-    const classes = classnames({ prefix: 'prefix' });
     return h(
       'div',
       {
-        staticClass: classes('talkee'),
-        class: this.className,
+        staticClass: this.classes('outer'),
         domProps: {
           id: 'talkee'
         }
-      },
-      content
+      }
     );
   }
 }
