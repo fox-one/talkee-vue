@@ -17,7 +17,7 @@ storiesOf('Talkee', module)
       defaultViewport: 'iphone6'
     }
   })
-  .add('China Dev', () => {
+  .add('Basic', () => {
     const redirect_url = encodeURIComponent(window.location.href + '&');
     return {
       components: {
@@ -31,7 +31,7 @@ storiesOf('Talkee', module)
     />`
     }
   })
-  .add('China Dev Without Reply', () => {
+  .add('Without Reply', () => {
     const redirect_url = encodeURIComponent(window.location.href + '&');
     return {
       components: {
@@ -48,7 +48,22 @@ storiesOf('Talkee', module)
     />`
     }
   })
-  .add('Japan Dev', () => ({
+  .add('With [talkee-group] Theme', () => {
+    const redirect_url = encodeURIComponent(window.location.href + '&');
+    return {
+      components: {
+        Talkee
+      },
+      template: `<talkee
+      :siteId="6"
+      :slug="1234"
+      prefixCls="talkee-group"
+      apiBase="https://talkee-test-api.firesbox.com/api"
+      loginUrl="https://mixin-oauth.firesbox.com/?client_id=65fdd5af-5d3f-496a-9d62-b5cdb4d8396f&scope=PROFILE:READ+PHONE:READ&response_type=code&redirect_url=${redirect_url}"
+    />`
+    }
+  })
+  .add('With Japan Env', () => ({
     components: {
       Talkee
     },

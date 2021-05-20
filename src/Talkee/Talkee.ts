@@ -68,7 +68,7 @@ export class Talkee extends Vue {
   private initTalkee() {
     if (this.talkee) return;
     if (!this.siteId || !this.slug || !this.apiBase || !this.loginUrl) {
-      console.info(`
+      console.error(`
         siteId: ${this.siteId},
         slug: ${this.slug},
         apiBase: ${this.apiBase},
