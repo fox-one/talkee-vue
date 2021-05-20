@@ -18,7 +18,7 @@ storiesOf('Talkee', module)
     }
   })
   .add('China Dev', () => {
-    const redirect_url = encodeURIComponent(window.location.href);
+    const redirect_url = encodeURIComponent(window.location.href + '&');
     return {
       components: {
         Talkee
