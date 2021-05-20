@@ -66,6 +66,16 @@ export class Talkee extends Vue {
 
   private initTalkee() {
     if (this.isInit) return;
+    if (!this.siteId || !this.slug || !this.apiBase || !this.loginUrl) {
+      console.info(`
+        siteId: ${this.siteId},
+        slug: ${this.slug},
+        apiBase: ${this.apiBase},
+        loginUrl: ${this.loginUrl}
+      `);
+      console.error('The [siteId], [slug], [apiBase] and [loginUrl] is required!');
+      return;
+    }
     this.isInit = true;
     new TalkeeSDK({
       // required
@@ -85,11 +95,6 @@ export class Talkee extends Vue {
   }
 
   public mounted() {
-    if (!this.siteId || !this.slug || !this.apiBase || !this.loginUrl) {
-      console.error('The [siteId], [slug], [apiBase] and [loginUrl] is required!');
-      return;
-    }
-
     this.initTalkee();
     this.initObserver();
   }
