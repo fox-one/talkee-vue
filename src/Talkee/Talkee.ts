@@ -14,9 +14,15 @@ export class Talkee extends Vue {
   @Prop({ type: String, default: '' }) private loginUrl!: string;
   @Prop({ type: String, default: 'talkee' }) private prefixCls!: string;
   @Prop({ type: Number, default: 1 }) private siteId!: number;
-  @Prop({ type: Number, default: void 0 }) private slug!: number;
+  @Prop({ type: [String, Number], default: void 0 }) private slug!: number | string;
   @Prop({ type: Boolean, default: true }) private expandable!: string;
   @Prop({ type: Array, default: () => [] }) private tweetTags!: string[];
+  @Prop({ type: Object, default: () => { } }) private renderOpts!: {
+    metabar?: boolean;
+    subcomment?: boolean;
+    tweet?: boolean;
+    reply?: boolean;
+  };
 
   private size = {
     width: 0,
@@ -74,7 +80,8 @@ export class Talkee extends Vue {
       tweetTags: this.tweetTags, // tweet tags
       // identitySelector: '#links-login',     // selector for identity.
       apiBase: this.apiBase,                     // alternative apiBase.
-      loginUrl: this.loginUrl                   // alternative login url.
+      loginUrl: this.loginUrl,                   // alternative login url.
+      render: this.renderOpts
     });
 
     this.initObserver();
