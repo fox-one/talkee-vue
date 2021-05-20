@@ -6,6 +6,7 @@ import '@storybook/addon-options/register';
 import '@storybook/addon-viewport/register';
 
 import { addons } from '@storybook/addons';
+import customTheme from './customTheme';
 
 addons.setConfig({
   isFullscreen: false,
@@ -18,5 +19,6 @@ addons.setConfig({
   sidebar: {
     showRoots: false,
     collapsedRoots: ['other']
-  }
+  },
+  theme: customTheme
 });
