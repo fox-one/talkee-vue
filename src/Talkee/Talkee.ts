@@ -24,6 +24,8 @@ export class Talkee extends Vue {
     reply?: boolean;
   };
 
+  private isInit = false;
+
   private size = {
     width: 0,
     height: 0
@@ -62,12 +64,9 @@ export class Talkee extends Vue {
     this.observer = observer;
   }
 
-  public mounted() {
-    if (!this.siteId || !this.slug || !this.apiBase || !this.loginUrl) {
-      console.error('The [siteId], [slug], [apiBase] and [loginUrl] is required!');
-      return;
-    }
-
+  private initTalkee() {
+    if (this.isInit) return;
+    this.isInit = true;
     new TalkeeSDK({
       // required
       siteId: this.siteId, // site id. 1 is debug env
@@ -83,8 +82,20 @@ export class Talkee extends Vue {
       loginUrl: this.loginUrl,                   // alternative login url.
       render: this.renderOpts
     });
+  }
 
+  public mounted() {
+    if (!this.siteId || !this.slug || !this.apiBase || !this.loginUrl) {
+      console.error('The [siteId], [slug], [apiBase] and [loginUrl] is required!');
+      return;
+    }
+
+    this.initTalkee();
     this.initObserver();
+  }
+
+  public updated() {
+    this.initTalkee();
   }
 
   public beforeDestroy() {
