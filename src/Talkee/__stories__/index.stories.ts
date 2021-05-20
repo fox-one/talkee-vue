@@ -17,18 +17,20 @@ storiesOf('Talkee', module)
       defaultViewport: 'iphone6'
     }
   })
-  .add('China Dev', () => ({
-    components: {
-      Talkee
-    },
-    template: `<talkee
+  .add('China Dev', () => {
+    const redirect_url = encodeURIComponent(window.location.href);
+    return {
+      components: {
+        Talkee
+      },
+      template: `<talkee
       :siteId="6"
       :slug="1234"
       apiBase="https://talkee-test-api.firesbox.com/api"
-      loginBase="https://mixin-oauth.firesbox.com"
-      clientId="65fdd5af-5d3f-496a-9d62-b5cdb4d8396f"
+      loginUrl="https://mixin-oauth.firesbox.com/?client_id=65fdd5af-5d3f-496a-9d62-b5cdb4d8396f&scope=PROFILE:READ+PHONE:READ&redirect_url=${redirect_url}"
     />`
-  }))
+    }
+  })
   .add('Japan Dev', () => ({
     components: {
       Talkee
@@ -37,7 +39,6 @@ storiesOf('Talkee', module)
       :siteId="4"
       :slug="234455"
       apiBase="https://links-login.chrove.com/api"
-      loginBase="https://oauth.chrove.com"
-      clientId="bf07d6d6-4d15-46ab-b5e4-6e66fac1151e"
+      loginUrl="https://oauth.chrove.com/?client_id=bf07d6d6-4d15-46ab-b5e4-6e66fac1151ef&scope=PROFILE:READ+PHONE:READ"
     />`
   }));

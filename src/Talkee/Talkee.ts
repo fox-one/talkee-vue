@@ -11,8 +11,7 @@ import type { CreateElement, VNode } from 'vue';
 @Component
 export class Talkee extends Vue {
   @Prop({ type: String, default: '' }) private apiBase!: string;
-  @Prop({ type: String, default: '' }) private loginBase!: string;
-  @Prop({ type: String, default: '' }) private clientId!: string;
+  @Prop({ type: String, default: '' }) private loginUrl!: string;
   @Prop({ type: String, default: 'talkee' }) private prefixCls!: string;
   @Prop({ type: Number, default: 1 }) private siteId!: number;
   @Prop({ type: Number, default: void 0 }) private slug!: number;
@@ -58,8 +57,8 @@ export class Talkee extends Vue {
   }
 
   public mounted() {
-    if (!this.siteId || !this.slug || !this.apiBase || !this.loginBase || !this.clientId) {
-      console.error('The [siteId], [slug], [apiBase], [clientId] and [loginBase] is required!');
+    if (!this.siteId || !this.slug || !this.apiBase || !this.loginUrl) {
+      console.error('The [siteId], [slug], [apiBase] and [loginUrl] is required!');
       return;
     }
 
@@ -75,8 +74,7 @@ export class Talkee extends Vue {
       tweetTags: this.tweetTags, // tweet tags
       // identitySelector: '#links-login',     // selector for identity.
       apiBase: this.apiBase,                     // alternative apiBase.
-      loginBase: this.loginBase,                   // alternative login url.
-      clientId: this.clientId
+      loginUrl: this.loginUrl                   // alternative login url.
     });
 
     this.initObserver();
