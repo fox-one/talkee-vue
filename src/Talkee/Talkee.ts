@@ -1,7 +1,8 @@
 import {
   Component,
   Vue,
-  Prop
+  Prop,
+  Watch
 } from 'vue-property-decorator';
 import TalkeeSDK from '@links-japan/talkee';
 import classnames from '@utils/classnames';
@@ -24,7 +25,7 @@ export class Talkee extends Vue {
     reply?: boolean;
   };
 
-  private isInit = false;
+  private talkee: undefined | TalkeeSDK;
 
   private size = {
     width: 0,
@@ -65,7 +66,7 @@ export class Talkee extends Vue {
   }
 
   private initTalkee() {
-    if (this.isInit) return;
+    if (this.talkee) return;
     if (!this.siteId || !this.slug || !this.apiBase || !this.loginUrl) {
       console.info(`
         siteId: ${this.siteId},
@@ -76,8 +77,8 @@ export class Talkee extends Vue {
       console.error('The [siteId], [slug], [apiBase] and [loginUrl] is required!');
       return;
     }
-    this.isInit = true;
-    new TalkeeSDK({
+
+    this.talkee = new TalkeeSDK({
       // required
       siteId: this.siteId, // site id. 1 is debug env
       slug: this.slug, // post slug. the unique id to identify posts
@@ -99,10 +100,6 @@ export class Talkee extends Vue {
     this.initObserver();
   }
 
-  public updated() {
-    this.initTalkee();
-  }
-
   public beforeDestroy() {
     if (this.observer) this.observer.disconnect();
   }
@@ -118,6 +115,23 @@ export class Talkee extends Vue {
         ref: 'talkee'
       }
     );
+  }
+
+  @Watch('siteId')
+  @Watch('slug')
+  @Watch('apiBase')
+  @Watch('loginUrl')
+  protected updateTalkee() {
+    if (this.talkee) {
+      this.talkee.setOptions({
+        siteId: this.siteId,
+        slug: this.slug,
+        apiBase: this.apiBase,
+        loginUrl: this.loginUrl
+      });
+    } else {
+      this.initTalkee();
+    }
   }
 }
 
