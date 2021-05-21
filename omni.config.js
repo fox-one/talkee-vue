@@ -6,7 +6,7 @@ module.exports = {
   type: 'component-vue', // 项目类型，请勿任意变动 (project type, please don't modify)
 
   dev: {
-    port: 6200, // 开发服务端口号 (dev-server port)
+    port: 8084, // 开发服务端口号 (dev-server port)
     host: 'localhost', // 开发服务端host (dev-server host)
     serverType: 'storybook' // 开发服务类型 (dev-server type)
   },

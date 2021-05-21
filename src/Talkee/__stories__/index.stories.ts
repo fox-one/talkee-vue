@@ -60,6 +60,10 @@ storiesOf('Talkee', module)
       prefixCls="talkee-group"
       apiBase="https://talkee-test-api.firesbox.com/api"
       loginUrl="https://mixin-oauth.firesbox.com/?client_id=65fdd5af-5d3f-496a-9d62-b5cdb4d8396f&scope=PROFILE:READ+PHONE:READ&response_type=code&redirect_url=${redirect_url}"
+      :renderOpts="{
+        reply: false,
+        tweet: false,
+      }"
     />`
     }
   })
