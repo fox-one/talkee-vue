@@ -18,6 +18,7 @@ export class Talkee extends Vue {
   @Prop({ type: [String, Number], default: void 0 }) private slug!: number | string;
   @Prop({ type: Boolean, default: true }) private expandable!: string;
   @Prop({ type: Array, default: () => [] }) private tweetTags!: string[];
+  @Prop({ type: Function, default: (talkee: TalkeeSDK) => { console.info('init talkee: ', talkee); } }) private onInit!: (talkee: TalkeeSDK) => any;
   @Prop({ type: Object, default: () => { } }) private renderOpts!: {
     metabar?: boolean;
     subcomment?: boolean;
@@ -93,6 +94,8 @@ export class Talkee extends Vue {
       loginUrl: this.loginUrl,                   // alternative login url.
       render: this.renderOpts
     });
+
+    this?.onInit(this.talkee);
   }
 
   public mounted() {
