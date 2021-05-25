@@ -34,42 +34,32 @@ export class Talkee extends Vue {
     height: -Infinity
   };
 
-  private observer: undefined | MutationObserver;
+  private timer: undefined | ReturnType<typeof setTimeout>;
 
   public get classes() {
     return classnames(this.prefixCls);
   }
 
-  private initObserver() {
-    const talkee = this.$refs.talkee as HTMLElement,
-      config = {
-        attributes: true,
-        childList: true,
-        substree: true
-      };
+  private resizeListener() {
+    this.$nextTick(() => {
+      const talkee = this.$refs.talkee as HTMLElement;
+      const {
+        width,
+        height
+      } = talkee.getBoundingClientRect();
+      const w = talkee.offsetWidth ?? width;
+      const h = talkee.offsetHeight ?? height;
 
-    const self = this;
-    const observer = new MutationObserver(function (mutations) {
-      mutations.forEach(function (mutation) {
-        const {
-          width,
-          height
-        } = talkee.getBoundingClientRect();
-        const w = talkee.offsetWidth ?? width;
-        const h = talkee.offsetHeight ?? height;
-        if (self.size.width !== w || self.size.height !== h) {
-          self.size.width = w;
-          self.size.height = h;
-          self.$emit('resize', self.talkee);
-          console.info('Mutation info: ', mutation);
-        }
-      });
+      if (this.size.width !== w || this.size.height !== h) {
+        this.size.width = w;
+        this.size.height = h;
+        this.$emit('resize', this.talkee);
+      }
+
+      this.timer = setTimeout(() => {
+        this.resizeListener();
+      }, 1500);
     });
-
-    // observe element's specified mutations
-    observer.observe(talkee, config);
-    // add the observer to data so we can disconnect it later
-    this.observer = observer;
   }
 
   private initTalkee() {
@@ -99,7 +89,7 @@ export class Talkee extends Vue {
       apiBase: this.apiBase,                     // alternative apiBase.
       loginUrl: this.loginUrl,                   // alternative login url.
       render: this.renderOpts,
-      loginRedirect: false,
+      redirectHash: false,
       hidePaginationWhenSinglePage: true
     });
 
@@ -108,11 +98,14 @@ export class Talkee extends Vue {
 
   public mounted() {
     this.initTalkee();
-    this.initObserver();
+    this.resizeListener();
   }
 
   public beforeDestroy() {
-    if (this.observer) this.observer.disconnect();
+    if (this.timer !== void 0) {
+      clearTimeout(this.timer);
+      this.timer = void 0;
+    }
   }
 
   public render(h: CreateElement): VNode {
