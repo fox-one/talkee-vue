@@ -30,8 +30,8 @@ export class Talkee extends Vue {
   private talkee: undefined | TALKEE_INSTANCE;
 
   private size = {
-    width: 0,
-    height: 0
+    width: -Infinity,
+    height: -Infinity
   };
 
   private observer: undefined | MutationObserver;
@@ -51,12 +51,17 @@ export class Talkee extends Vue {
     const self = this;
     const observer = new MutationObserver(function (mutations) {
       mutations.forEach(function (mutation) {
-        const w = talkee.offsetWidth;
-        const h = talkee.offsetHeight;
+        const {
+          width,
+          height
+        } = talkee.getBoundingClientRect();
+        const w = talkee.offsetWidth ?? width;
+        const h = talkee.offsetHeight ?? height;
         if (self.size.width !== w || self.size.height !== h) {
           self.size.width = w;
           self.size.height = h;
           self.$emit('resize', self.talkee);
+          console.info('Mutation info: ', mutation);
         }
       });
     });
