@@ -93,7 +93,9 @@ export class Talkee extends Vue {
       // identitySelector: '#links-login',     // selector for identity.
       apiBase: this.apiBase,                     // alternative apiBase.
       loginUrl: this.loginUrl,                   // alternative login url.
-      render: this.renderOpts
+      render: this.renderOpts,
+      loginRedirect: false,
+      hidePaginationWhenSinglePage: true
     });
 
     this.$emit('init', this.talkee);
