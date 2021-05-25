@@ -6,6 +6,7 @@ VueWrapper {
     "init": Array [
       Array [
         Talkee {
+          "_isLogin": false,
           "apiBase": "",
           "applySortMethod": [Function],
           "auth": [Function],
@@ -21,7 +22,6 @@ VueWrapper {
           "editorArea": null,
           "expandable": false,
           "init": [Function],
-          "isLogin": false,
           "isSigned": false,
           "itemPerPage": 10,
           "loginUrl": "",
@@ -56,6 +56,7 @@ VueWrapper {
     Object {
       "args": Array [
         Talkee {
+          "_isLogin": false,
           "apiBase": "",
           "applySortMethod": [Function],
           "auth": [Function],
@@ -71,7 +72,6 @@ VueWrapper {
           "editorArea": null,
           "expandable": false,
           "init": [Function],
-          "isLogin": false,
           "isSigned": false,
           "itemPerPage": 10,
           "loginUrl": "",
@@ -113,6 +113,7 @@ VueWrapper {
     "init": Array [
       Array [
         Talkee {
+          "_isLogin": false,
           "apiBase": "",
           "applySortMethod": [Function],
           "auth": [Function],
@@ -128,7 +129,6 @@ VueWrapper {
           "editorArea": null,
           "expandable": false,
           "init": [Function],
-          "isLogin": false,
           "isSigned": false,
           "itemPerPage": 10,
           "loginUrl": "",
@@ -163,6 +163,7 @@ VueWrapper {
     Object {
       "args": Array [
         Talkee {
+          "_isLogin": false,
           "apiBase": "",
           "applySortMethod": [Function],
           "auth": [Function],
@@ -178,7 +179,6 @@ VueWrapper {
           "editorArea": null,
           "expandable": false,
           "init": [Function],
-          "isLogin": false,
           "isSigned": false,
           "itemPerPage": 10,
           "loginUrl": "",

@@ -9,6 +9,8 @@ import classnames from '@utils/classnames';
 /* import types */
 import type { CreateElement, VNode } from 'vue';
 
+export type TALKEE_INSTANCE = TalkeeSDK;
+
 @Component
 export class Talkee extends Vue {
   @Prop({ type: String, default: '' }) private apiBase!: string;
@@ -25,7 +27,7 @@ export class Talkee extends Vue {
     reply?: boolean;
   };
 
-  private talkee: undefined | TalkeeSDK;
+  private talkee: undefined | TALKEE_INSTANCE;
 
   private size = {
     width: 0,
