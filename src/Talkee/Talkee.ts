@@ -54,7 +54,7 @@ export class Talkee extends Vue {
         if (self.size.width !== w || self.size.height !== h) {
           self.size.width = w;
           self.size.height = h;
-          self.$emit('resize');
+          self.$emit('resize', self.talkee);
         }
       });
     });

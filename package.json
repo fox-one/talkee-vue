@@ -1,6 +1,6 @@
 {
   "name": "@foxone/talkee-vue",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "description": "",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -31,7 +31,7 @@
   },
   "license": "ISC",
   "dependencies": {
-    "@links-japan/talkee": "^0.2.0-8",
+    "@links-japan/talkee": "^0.2.0-9",
     "classnames": "~2.2.6"
   },
   "devDependencies": {
