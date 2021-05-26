@@ -1729,10 +1729,10 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
-"@links-japan/talkee@^0.2.0-12":
-  version "0.2.0-12"
-  resolved "https://registry.npmjs.org/@links-japan/talkee/-/talkee-0.2.0-12.tgz#1f25c25039ebc6d5999ef5ed434980cdf85c45fd"
-  integrity sha512-/cLNPpWKqhkaT17/d1cDAJA8VmLvdVGscemsGRBhiAKToactGzD6Gr8cO9ZoHGc9xN4j5KfsMswnre10xk0eTA==
+"@links-japan/talkee@^0.2.0-13":
+  version "0.2.0-13"
+  resolved "https://registry.npmjs.org/@links-japan/talkee/-/talkee-0.2.0-13.tgz#562927604894cdfd3c93ceb576d1102c46f09f66"
+  integrity sha512-xeV6lJDRpbDCXizIWSut3q0EWwmpXEQvBxcRUpB/EABcXq7xTZqfGYXqb0bb3ZuxZiq6MnuA2TZUEm+JHVnmjw==
   dependencies:
     axios "^0.21.1"
     classnames "^2.3.1"

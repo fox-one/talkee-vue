@@ -40,6 +40,10 @@ export class Talkee extends Vue {
     return classnames(this.prefixCls);
   }
 
+  private handleError(e: any) {
+    this.$emit('error', e);
+  }
+
   private resizeListener() {
     this.$nextTick(() => {
       const talkee = this.$refs.talkee as HTMLElement;
@@ -89,6 +93,7 @@ export class Talkee extends Vue {
       apiBase: this.apiBase,                     // alternative apiBase.
       loginUrl: this.loginUrl,                   // alternative login url.
       render: this.renderOpts,
+      onError: this.handleError,
       redirectHash: false,
       hidePaginationWhenSinglePage: true
     });
