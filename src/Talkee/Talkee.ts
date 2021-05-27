@@ -44,6 +44,14 @@ export class Talkee extends Vue {
     this.$emit('error', e);
   }
 
+  private handleKeyboardRise(e: any) {
+    this.$emit('keyboard:rise', e);
+  }
+
+  private handleKeyboardFold(e: any) {
+    this.$emit('keyboard:fold', e);
+  }
+
   private resizeListener() {
     this.$nextTick(() => {
       const talkee = this.$refs.talkee as HTMLElement;
@@ -94,6 +102,8 @@ export class Talkee extends Vue {
       loginUrl: this.loginUrl,                   // alternative login url.
       render: this.renderOpts,
       onError: this.handleError,
+      onKeyboardRise: this.handleKeyboardRise,
+      onKeyboardFold: this.handleKeyboardFold,
       redirectHash: false,
       hidePaginationWhenSinglePage: true
     });

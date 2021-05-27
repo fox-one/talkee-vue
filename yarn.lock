@@ -1128,6 +1128,14 @@
     pirates "^4.0.0"
     source-map-support "^0.5.16"
 
+"@babel/runtime-corejs2@^7.5.4":
+  version "7.14.0"
+  resolved "https://registry.npmjs.org/@babel/runtime-corejs2/-/runtime-corejs2-7.14.0.tgz#5519b92ccc819bd3d0a1ecb25ab3cb5a775485f8"
+  integrity sha512-btR4E8JiGlmmDI5YgirlG9z3T91rBdxnVh2YuEStrHDcekffaaIeK+CE0S4IaYUyYhMa7rFDfF2GEO79XNbLEA==
+  dependencies:
+    core-js "^2.6.5"
+    regenerator-runtime "^0.13.4"
+
 "@babel/runtime@^7.0.0", "@babel/runtime@^7.1.2", "@babel/runtime@^7.12.13", "@babel/runtime@^7.12.5", "@babel/runtime@^7.3.1", "@babel/runtime@^7.4.4", "@babel/runtime@^7.5.0", "@babel/runtime@^7.5.5", "@babel/runtime@^7.6.3", "@babel/runtime@^7.7.2", "@babel/runtime@^7.8.4", "@babel/runtime@^7.8.7", "@babel/runtime@^7.9.2":
   version "7.14.0"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.14.0.tgz#46794bc20b612c5f75e62dd071e24dfd95f1cbe6"
@@ -1729,14 +1737,15 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
-"@links-japan/talkee@^0.2.0-13":
-  version "0.2.0-13"
-  resolved "https://registry.npmjs.org/@links-japan/talkee/-/talkee-0.2.0-13.tgz#562927604894cdfd3c93ceb576d1102c46f09f66"
-  integrity sha512-xeV6lJDRpbDCXizIWSut3q0EWwmpXEQvBxcRUpB/EABcXq7xTZqfGYXqb0bb3ZuxZiq6MnuA2TZUEm+JHVnmjw==
+"@links-japan/talkee@^0.2.0-14":
+  version "0.2.0-14"
+  resolved "https://registry.npmjs.org/@links-japan/talkee/-/talkee-0.2.0-14.tgz#fa1e6a71b4248cf297774a1efe7681853ef6e580"
+  integrity sha512-xft3t+beCkfga7OYvzF9calZZ2VxTFQyeRa1VNSjqIYAQFVIBhiKmcXSr01UYMY/F8SlSj5ebmXUxwwiKmUxhw==
   dependencies:
     axios "^0.21.1"
     classnames "^2.3.1"
     lodash "^4.17.21"
+    peeler-js "^0.4.1"
 
 "@marionebl/sander@^0.6.0":
   version "0.6.1"
@@ -5785,7 +5794,7 @@ core-js-pure@^3.0.1:
   resolved "https://registry.yarnpkg.com/core-js-pure/-/core-js-pure-3.12.1.tgz#934da8b9b7221e2a2443dc71dfa5bd77a7ea00b8"
   integrity sha512-1cch+qads4JnDSWsvc7d6nzlKAippwjUlf6vykkTLW53VSV+NkE6muGBToAjEA8pG90cSfcud3JgVmW2ds5TaQ==
 
-core-js@^2.4.0, core-js@^2.5.0:
+core-js@^2.4.0, core-js@^2.5.0, core-js@^2.6.5:
   version "2.6.12"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.6.12.tgz#d9333dfa7b065e347cc5682219d6f690859cc2ec"
   integrity sha512-Kb2wC0fvsWfQrgk8HU5lW6U/Lcs8+9aaYcy4ZFc6DDlo4nZ7n70dEgE5rtR0oG6ufKDUnrwfWL1mXR5ljDatrQ==
@@ -12519,6 +12528,13 @@ pbkdf2@^3.0.3:
     ripemd160 "^2.0.1"
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
+
+peeler-js@^0.4.1:
+  version "0.4.1"
+  resolved "https://registry.npmjs.org/peeler-js/-/peeler-js-0.4.1.tgz#0c186a2bc90af41a67d645e0559b6e597b905c32"
+  integrity sha512-hKak8oVGsWZDUilS4KVYm8Ew2RNDi4KJ/Blwlj6Kvglchz6rw8aCReBdJV9EgC4N7RJhWMoLWaxlFt/51G6JOw==
+  dependencies:
+    "@babel/runtime-corejs2" "^7.5.4"
 
 performance-now@^2.1.0:
   version "2.1.0"
