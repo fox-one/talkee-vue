@@ -39,3 +39,15 @@
 }
 </style>
 ```
+
+## types
+```typescript
+interface RenderOpts {
+  metabar: boolean;
+  subcomment: boolean;
+  tweet: boolean;
+  like: boolean;
+  reply: boolean;
+  expansion: boolean;
+}
+```

@@ -1737,10 +1737,10 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
-"@links-japan/talkee@~0.2.0":
-  version "0.2.0"
-  resolved "https://registry.npmjs.org/@links-japan/talkee/-/talkee-0.2.0.tgz#57eb1fa796a5923b747405970e61deb7373d076f"
-  integrity sha512-J7SpisJnJ1CGkch4bj1Ap6wRTSB3xBEkoeunfI740T8O1FqSgXsfEGE8W7qQI4qMKem/kTca0SZQAQk5UMM+7Q==
+"@links-japan/talkee@^0.2.1":
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/@links-japan/talkee/-/talkee-0.2.1.tgz#1528904ecc40e306620adb60e3c28ecf2a6fd35e"
+  integrity sha512-62rsqRDhXcxuGi/mz307HzeqabNDKM0OdNPZCkCj/XLCfSr1ZSXNbrNNxSSYcx4Jfrb4CaQj9s40aX9oDTpWyw==
   dependencies:
     axios "^0.21.1"
     classnames "^2.3.1"
