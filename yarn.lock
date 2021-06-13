@@ -1737,10 +1737,10 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
-"@links-japan/talkee@~0.2.0":
-  version "0.2.0"
-  resolved "https://registry.npmjs.org/@links-japan/talkee/-/talkee-0.2.0.tgz#57eb1fa796a5923b747405970e61deb7373d076f"
-  integrity sha512-J7SpisJnJ1CGkch4bj1Ap6wRTSB3xBEkoeunfI740T8O1FqSgXsfEGE8W7qQI4qMKem/kTca0SZQAQk5UMM+7Q==
+"@links-japan/talkee@~0.2.2":
+  version "0.2.2"
+  resolved "https://registry.npmjs.org/@links-japan/talkee/-/talkee-0.2.2.tgz#5b1eaa19cb9d233e59724a349943454bd4f04338"
+  integrity sha512-ZyhxYfruk2tmdQ56LvZMAqh2AQ+AhWSjc7eG2qPOAkOIfo3ovgHqsUj2j/tE2B1YJ1Y+U3AWKTC3UlgOOP5l8g==
   dependencies:
     axios "^0.21.1"
     classnames "^2.3.1"
@@ -1834,10 +1834,10 @@
     "@nodelib/fs.scandir" "2.1.4"
     fastq "^1.6.0"
 
-"@omni-door/cli@^2.4.5":
-  version "2.4.5"
-  resolved "https://registry.npmjs.org/@omni-door/cli/-/cli-2.4.5.tgz#eddee7a28db6490b1c4bf81991f1d33afd26a5d7"
-  integrity sha512-UFE6bDp4BzUyRgtnguA0S+j0UDnnty3Brss8On6bxL30xPWnfTmWxXwohdXqXdnVjdf8e+jsynVuu1yEsc2Z7Q==
+"@omni-door/cli@^2.4.7":
+  version "2.4.7"
+  resolved "https://registry.npmjs.org/@omni-door/cli/-/cli-2.4.7.tgz#4bd3ee5acb886c301eccbd66ae9e186768742a35"
+  integrity sha512-PtJrLnY5fy1q6CLJ7jNTX/p5nDKVL+UBn76gT73khOCUCj8BEcWDA4RTsY2is5mud+B4/Fk8vbRRIcsidvsYZw==
   dependencies:
     "@omni-door/utils" "~1.2.5"
     "@types/express" "4.17.8"
