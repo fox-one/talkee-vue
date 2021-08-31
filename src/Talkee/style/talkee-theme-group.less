@@ -200,7 +200,7 @@
     margin-top: 0;
 
     &-ul {
-      & .@{prefix}-comment:first-of-type {
+      & .@{prefix}-comment:last-of-type {
         .@{prefix}-comment-right {
           border: none;
         }
@@ -225,7 +225,8 @@
     &-right {
       position: relative;
       flex: 1;
-      border-top: 1px solid rgba(0, 0, 0, 0.1);
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 
       &-top {
         display: flex;
