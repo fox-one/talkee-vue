@@ -295,10 +295,15 @@
   &-meta-like-button-wrapper {
     margin-left: -4px;
     font-size: 13px;
+
+    &>* {
+      display: inline-block;
+      vertical-align: middle;
+    }
   }
 
   &-meta-like-count {
-    font-size: 0;
+    font-size: 12px;
   }
 
   &-meta-reply-button-wrapper {
@@ -316,7 +321,7 @@
 
   // sort bar
   &-sort-bar {
-    display: none;
+    display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 16px;
@@ -376,6 +381,7 @@
   }
 
   &-button&-menu-button {
+    display: none;
     width: 32px;
     height: 24px;
     margin-right: -10px;

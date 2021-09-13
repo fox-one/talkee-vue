@@ -19,6 +19,7 @@ export class Talkee extends Vue {
   @Prop({ type: Number, default: 1 }) private siteId!: number;
   @Prop({ type: [String, Number], default: void 0 }) private slug!: number | string;
   @Prop({ type: Boolean, default: true }) private expandable!: string;
+  @Prop({ type: Number, default: 512 }) private commentLength!: number;
   @Prop({ type: Array, default: () => [] }) private tweetTags!: string[];
   @Prop({ type: Object, default: () => { } }) private renderOpts!: {
     metabar?: boolean;
@@ -105,7 +106,8 @@ export class Talkee extends Vue {
       onKeyboardRise: this.handleKeyboardRise,
       onKeyboardFold: this.handleKeyboardFold,
       redirectHash: false,
-      hidePaginationWhenSinglePage: true
+      hidePaginationWhenSinglePage: true,
+      commentLength: this.commentLength
     });
 
     this.$emit('init', this.talkee);
