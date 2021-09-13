@@ -27,6 +27,7 @@ VueWrapper {
           "loginUrl": "",
           "opts": Object {
             "apiBase": "https://talkee-test-api.firesbox.com/api",
+            "commentLength": 512,
             "commentSelector": "#talkee",
             "expandable": true,
             "hidePaginationWhenSinglePage": true,
@@ -82,6 +83,7 @@ VueWrapper {
           "loginUrl": "",
           "opts": Object {
             "apiBase": "https://talkee-test-api.firesbox.com/api",
+            "commentLength": 512,
             "commentSelector": "#talkee",
             "expandable": true,
             "hidePaginationWhenSinglePage": true,
@@ -144,6 +146,7 @@ VueWrapper {
           "loginUrl": "",
           "opts": Object {
             "apiBase": "https://talkee-test-api.firesbox.com/api",
+            "commentLength": 512,
             "commentSelector": "#talkee",
             "expandable": true,
             "hidePaginationWhenSinglePage": true,
@@ -199,6 +202,7 @@ VueWrapper {
           "loginUrl": "",
           "opts": Object {
             "apiBase": "https://talkee-test-api.firesbox.com/api",
+            "commentLength": 512,
             "commentSelector": "#talkee",
             "expandable": true,
             "hidePaginationWhenSinglePage": true,
