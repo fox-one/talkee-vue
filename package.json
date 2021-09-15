@@ -31,7 +31,7 @@
   },
   "license": "ISC",
   "dependencies": {
-    "@links-japan/talkee": "^0.2.5",
+    "@links-japan/talkee": "^0.2.6",
     "classnames": "~2.2.6"
   },
   "devDependencies": {
