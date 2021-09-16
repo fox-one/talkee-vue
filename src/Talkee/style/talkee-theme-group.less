@@ -53,6 +53,11 @@
       cursor: pointer;
     }
 
+    &.@{prefix}-meta-reply-button {
+      height: auto !important;
+      font-size: 12px !important;
+    }
+
     &.@{prefix}-meta-like-button {
       padding-left: 24px;
       color: #000;
@@ -226,7 +231,7 @@
     &-right {
       position: relative;
       flex: 1;
-      padding-bottom: 12px;
+      padding-bottom: 16px;
       border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 
       &-top {
@@ -268,7 +273,7 @@
     }
 
     &-content {
-      margin-top: 8px;
+      margin-top: 18px;
       font-size: 14px;
       line-height: 1.4;
       white-space: pre-line;
@@ -295,7 +300,7 @@
 
   &-meta-like-button-wrapper {
     margin-left: -4px;
-    font-size: 13px;
+    font-size: 12px;
     text-align: right;
 
     &>* {
