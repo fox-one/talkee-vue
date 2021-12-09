@@ -9,7 +9,10 @@ module.exports = {
         use: [
           {loader: 'babel-loader'}
         ],
-        exclude: /node_modules/
+        include: [
+          path.resolve(__dirname, '../src'),
+          path.resolve(__dirname, '../node_modules/@foxone/uikit')
+        ]
       },
       {
         test: /.(woff|woff2|eot|ttf|svg|jpg|png|gif)$/,
@@ -29,8 +32,20 @@ module.exports = {
         use: ['style-loader', 'css-loader', 'less-loader']
       },
       {
-        test: /.(css|scss|sass)$/,
+        test: /.(css|scss)$/,
         use: ['style-loader', 'css-loader', 'sass-loader']
+      },
+      {
+        test: /.sass$/,
+        use: ['style-loader', 'css-loader', {
+          loader: 'sass-loader',
+          options: {
+            implementation: require('sass'),
+            sassOptions: {
+              indentedSyntax: true
+            },
+          }
+        }]
       }
 
     ],
