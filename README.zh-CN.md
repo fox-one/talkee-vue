@@ -5,61 +5,27 @@
 [示例](https://fox-one.github.io/talkee-vue/#/)
 
 ## 快速开始
-### 安装依赖
+### 安装
 ```shell
-yarn
+npm i -S @foxone/talkee-vue
+# 或者
+yarn add @foxone/talkee-vue
+# 或者
+pnpm i -S @foxone/talkee-vue
 ```
 
-### 启动项目
-```shell
-yarn start
-```
-or
-```shell
-yarn dev
+### 使用
+```js
+import Talkee from '@foxone/talkee-vue';
 ```
 
-### 新建组件
+## 开发
+对于调试或维护，可以将项目 clone 到本地，然后启动项目。
+
 ```shell
-yarn new
+git clone --depth 1
+
+yarn && yarn dev
 ```
 
-*新建一个名为 Button 的函数组件👇*
-```shell
-yarn new Button -f
-```
-
----
-
-## 构建和发布
-### 构建
-```shell
-yarn build
-```
-
-*构建项目时绕过所有检查👇*
-```shell
-yarn build -n
-```
-
-### 发布
-```shell
-yarn release
-```
-
-*发布项目时忽略版本迭代👇*
-```shell
-yarn release -i
-```
-
-*发布项目时指定迭代的版本为 0.3.25 👇*
-```shell
-yarn release -m 0.3.25
-```
-
-*发布项目时绕过所有检查👇*
-```shell
-yarn release -n
-```
-
-**更多配置项请在 [omni.config.js](https://github.com/omni-door/cli/blob/master/docs/OMNI.zh-CN.md) 中编辑**
+[更多详情](./DEV.zh-CN.md)

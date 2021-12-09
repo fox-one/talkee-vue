@@ -1,6 +1,7 @@
 'use strict';
 
 const path = require('path');
+const gulpfile = require('./gulpfile');
 
 module.exports = {
   type: 'component-vue', // 项目类型，请勿任意变动 (project type, please don't modify)
@@ -27,6 +28,10 @@ module.exports = {
     // 务必使用绝对路径 (must be a absolute path)
     esmDir: path.resolve('es'),
 
+    // 构建阶段的自定义配置回调 (The callback will be call in the build-process)
+    // 返回自定义的配置 (You can return your custom build configuration)
+    configuration: gulpfile,
+
     reserve: {
       assets: [] // 构建结果保留其他资源的路径 (reserve other asset paths)
     },
@@ -36,7 +41,7 @@ module.exports = {
       test: true, // 构建时是否进行单元测试 (whether or not process unit-test)
       eslint: true, // 构建时是否进行eslint检测 (whether or not process eslint checking)
       prettier: true, // 构建时是否进行prettier检测 (whether or not process prettier checking)
-      stylelint: true // 构建时是否进行stylelint检测 (whether or not process stylelint checking)
+      stylelint: true, // 构建时是否进行stylelint检测 (whether or not process stylelint checking)
     }
   },
 

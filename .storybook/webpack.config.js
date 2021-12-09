@@ -5,7 +5,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /.(js|ts)$/,
+        test: /.(js|jsx|ts|tsx)$/,
         use: [
           {loader: 'babel-loader'}
         ],
@@ -25,8 +25,12 @@ module.exports = {
       },
       
       {
-        test: /.(css|less)$/,
+        test: /.less$/,
         use: ['style-loader', 'css-loader', 'less-loader']
+      },
+      {
+        test: /.(css|scss|sass)$/,
+        use: ['style-loader', 'css-loader', 'sass-loader']
       }
 
     ],
@@ -37,6 +41,6 @@ module.exports = {
     alias: {
       '@utils': path.resolve(__dirname, '../src/utils')
     },
-    extensions: [".ts", ".tsx", ".js", ".jsx", ".md", ".less", ".css"]
+    extensions: [".ts", ".tsx", ".js", ".jsx", ".md", ".scss", ".css", ".sass"]
   }
 };

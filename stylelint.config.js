@@ -9,10 +9,13 @@ module.exports = {
 	],
 	plugins: [
 		'stylelint-order',
+    'stylelint-scss',
 		'stylelint-declaration-block-no-ignored-properties'
 	],
 	rules: {
 		'no-descending-specificity': null,
+    "at-rule-no-unknown": null,
+    "scss/selector-no-redundant-nesting-selector": true,
 		'plugin/declaration-block-no-ignored-properties': true
 	}
 };

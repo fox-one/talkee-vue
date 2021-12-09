@@ -1,11 +1,12 @@
-import {
-  addDecorator,
-  configure
-} from '@storybook/vue';
+import { addDecorator, configure } from '@storybook/vue';
 import { withOptions } from '@storybook/addon-options';
 import { setConsoleOptions } from '@storybook/addon-console';
 import { addReadme } from 'storybook-readme/vue';
 
+import Vue from 'vue';
+import VueCompositionAPI from '@vue/composition-api';
+
+Vue.use(VueCompositionAPI);
 addDecorator(addReadme);
 setConsoleOptions({
   panelExclude: []

@@ -5,61 +5,27 @@ English | [简体中文](./README.zh-CN.md)
 [Demo](https://fox-one.github.io/talkee-vue/#/)
 
 ## Quick start
-### Install dependencies
+### Install
 ```shell
-yarn
+npm i -S @foxone/talkee-vue
+# or
+yarn add @foxone/talkee-vue
+# or
+pnpm i -S @foxone/talkee-vue
 ```
 
-### Run project
-```shell
-yarn start
-```
-or
-```shell
-yarn dev
+### Usage
+```js
+import Talkee from '@foxone/talkee-vue';
 ```
 
-### Create a Component
+## Dev
+For debugging or maintenance, you can clone the whole git repository and run the project:
+
 ```shell
-yarn new
+git clone --depth 1
+
+yarn && yarn dev
 ```
 
-*Create a functional Component which name is Button👇*
-```shell
-yarn new Button -f
-```
-
----
-
-## Build and Release
-### Build
-```shell
-yarn build
-```
-
-*Bypass all pre-check before building👇*
-```shell
-yarn build -n
-```
-
-### Release
-```shell
-yarn release
-```
-
-*Ignoring version of iteration👇*
-```shell
-yarn release -i
-```
-
-*Manual specify version of iteration to 0.3.25👇*
-```shell
-yarn release -m 0.3.25
-```
-
-*Bypass all pre-check before release👇*
-```shell
-yarn release -n
-```
-
-**More powerful customizations is in [omni.config.js](https://github.com/omni-door/cli/blob/master/docs/OMNI.md)**
+[More Detials](./DEV.md)

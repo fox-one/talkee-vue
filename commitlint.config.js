@@ -8,7 +8,7 @@ const Configuration = {
   rules: {
     'type-enum': [2, 'always', [
       '[OMNI-DOOR]',
-      '[TALKEE-VUE]',
+      '[OMNI-CP-VUE]',
       'feat',
       'feature',
       'fix',
