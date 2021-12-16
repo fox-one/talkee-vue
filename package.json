@@ -37,8 +37,9 @@
   },
   "license": "ISC",
   "dependencies": {
-    "@foxone/vue-scroll": "^0.0.12",
+    "@foxone/vue-scroll": "~0.0.12",
     "@links-japan/talkee": "^0.2.6",
+    "axios": "~0.24.0",
     "classnames": "~2.2.6"
   },
   "devDependencies": {

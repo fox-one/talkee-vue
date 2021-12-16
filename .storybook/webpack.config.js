@@ -54,6 +54,8 @@ module.exports = {
   mode: 'development',
   resolve: {
     alias: {
+      '@': path.resolve(__dirname, '../src'),
+      '@apis': path.resolve(__dirname, '../src/apis'),
       '@utils': path.resolve(__dirname, '../src/utils'),
       '@constants': path.resolve(__dirname, '../src/constants')
     },

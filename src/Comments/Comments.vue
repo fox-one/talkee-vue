@@ -1,14 +1,16 @@
 <template>
-  <div :class="classes()">
+  <ul :class="classes('comments')">
     <slot name="default" />
-  </div>
+  </ul>
 </template>
 
 <script lang="ts">
 import {
   defineComponent,
-  onMounted
+  onMounted,
+  PropType
 } from '@vue/composition-api';
+import apis from '@apis/index';
 import classnames from '@utils/classnames';
 
 export default defineComponent({
@@ -16,13 +18,26 @@ export default defineComponent({
   props: {
     prefixCls: {
       type: String,
-      default: 'comments'
-    }
+      default: 'talkee'
+    },
+    apiBase: {
+      type: String,
+      default: ''
+    },
+    order: {
+      type: String as PropType<'favor_count' | 'id' | 'id-asc' | 'id-desc'>,
+      default: 'favor_count'
+    },
+    page: {
+      type: Number,
+      default: 1
+    },
   },
   setup(props) {
     const classes = classnames(props.prefixCls);
-    onMounted(() => {
-      console.info('Comments mounted!');
+    onMounted(async () => {
+      const { order, page, apiBase } = props;
+      await apis.getComments(order, page, apiBase);
     });
 
     return { classes };

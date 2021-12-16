@@ -2,23 +2,13 @@ import { APP_TOKEN, APP_ENV } from '../constants';
 import { $t } from '../i18n';
 
 export const helper = {
-  // getUrlQuery: function () {
-  //   const search = window.location.search.slice(1);
-  //   const segs = search.split("&");
-  //   const ret = {};
-  //   const pairs = segs.map((x) => {
-  //     const r = x.split("=");
-  //     if (r.length === 1) {
-  //       r.push("");
-  //     }
-  //     return r;
-  //   });
-  //   for (let ix = 0; ix < pairs.length; ix++) {
-  //     const p = pairs[ix];
-  //     ret[p[0]] = p[1];
-  //   }
-  //   return ret;
-  // },
+  setDefaultParams: function (params) {
+    (window as any).__TALKEE_PARAMS__ = params;
+  },
+
+  getDefaultParams: function () {
+    return (window as any).__TALKEE_PARAMS__;
+  },
 
   getUrlQuery: function () {
     const url = new URL(window.location.href);

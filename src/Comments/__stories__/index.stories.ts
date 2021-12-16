@@ -3,6 +3,7 @@ import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
 import { themes } from '@storybook/theming';
 import Comments from '../';
 import '../style';
+import utils from '../../utils/helper'
 
 storiesOf('Comments', module)
   .addParameters({
@@ -17,9 +18,12 @@ storiesOf('Comments', module)
       defaultViewport: 'iphone6'
     }
   })
-  .add('with text', () => ({
-    components: {
-      Comments
-    },
-    template: `<Comments>{{'Hello Comments'}}</Comments>`
-  }));
+  .add('with text', () => {
+    utils.setDefaultParams({ site_id: 6, slug: 1234 });
+    return {
+      components: {
+        Comments
+      },
+      template: `<Comments apiBase="https://talkee-test-api.firesbox.com/api">{{'Hello Comments'}}</Comments>`
+    }
+  });

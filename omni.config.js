@@ -80,7 +80,7 @@ module.exports = {
     test: true,
 
     // 样式文件类型 (stylesheet type)
-    stylesheet: 'less',
+    stylesheet: 'scss',
 
     // 是否生成README.md (whether or not generate README.md)
     readme: true

@@ -1,18 +1,11 @@
 import axios from 'axios';
-import utils from '../utils/helper';
-import { API_BASE } from '../constants';
-import { IComment } from '../types/api';
+import utils from '@utils/helper';
+import { API_BASE } from '@/constants';
 
-const setDefaultParams = function (params) {
-  (window as any).__TALKEE_PARAMS__ = params;
-};
-
-const getDefaultParams = function () {
-  return (window as any).__TALKEE_PARAMS__;
-};
+import type { IComment } from '@/types/api';
 
 const request = async function (opts): Promise<any> {
-  let params = getDefaultParams() || {};
+  let params = utils.getDefaultParams() || {};
   if (opts.params) {
     params = Object.assign(params, opts.params);
   }
@@ -70,7 +63,7 @@ const auth = async function (code, baseURL: string) {
   });
 };
 
-const getComment = (id, baseURL: string): Promise<IComment> => {
+const getComment = (id: string, baseURL: string): Promise<IComment> => {
   return request({
     baseURL,
     method: 'get',
@@ -146,8 +139,6 @@ const getSubComments = (
 };
 
 export default {
-  setDefaultParams,
-  getDefaultParams,
   request,
   getMe,
   auth,
