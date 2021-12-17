@@ -1,6 +1,11 @@
 <template>
   <ul :class="classes('comments')">
-    <slot name="default" />
+    <comment-item
+      v-for="(comment, ind) in comments"
+      :key="ind"
+      :comment="comment"
+      :prefix-cls="prefixCls"
+    />
   </ul>
 </template>
 
@@ -8,13 +13,19 @@
 import {
   defineComponent,
   onMounted,
-  PropType
+  PropType,
+  ref
 } from '@vue/composition-api';
 import apis from '@apis/index';
 import classnames from '@utils/classnames';
+import CommentItem from './CommentItem.vue';
+import { IComment } from '@/types/api';
 
 export default defineComponent({
   name: 'Comments',
+  components: {
+    CommentItem
+  },
   props: {
     prefixCls: {
       type: String,
@@ -34,13 +45,15 @@ export default defineComponent({
     },
   },
   setup(props) {
+    const comments = ref([] as IComment[]);
     const classes = classnames(props.prefixCls);
     onMounted(async () => {
       const { order, page, apiBase } = props;
-      await apis.getComments(order, page, apiBase);
+      const res = await apis.getComments(order, page, apiBase);
+      comments.value = res.comments;
     });
 
-    return { classes };
+    return { comments, classes };
   }
 });
 </script>

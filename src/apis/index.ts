@@ -75,7 +75,12 @@ const getComments = (
   order,
   page,
   baseURL: string
-): Promise<Array<IComment>> => {
+): Promise<{
+  comments: Array<IComment>;
+  ipp: number;
+  page: number;
+  total: number;
+}> => {
   return request({
     baseURL,
     method: 'get',
