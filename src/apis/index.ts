@@ -5,7 +5,8 @@ import { API_BASE } from '@/constants';
 import type { IComment } from '@/types/api';
 
 const request = async function (opts): Promise<any> {
-  let params = utils.getDefaultParams() || {};
+  // eslint-disable-next-line prefer-const
+  let { apiBase, ...params } = utils.getDefaultParams() || {};
   if (opts.params) {
     params = Object.assign(params, opts.params);
   }
@@ -23,7 +24,7 @@ const request = async function (opts): Promise<any> {
   try {
     resp = await axios({
       method: opts.method || 'get',
-      baseURL: opts.baseURL || API_BASE || '',
+      baseURL: opts.baseURL || apiBase || API_BASE || '',
       url: opts.url || '',
       data: opts.data || {},
       params,
@@ -46,26 +47,23 @@ const request = async function (opts): Promise<any> {
   });
 };
 
-const getMe = async function (baseURL: string) {
+const getMe = async function () {
   return await request({
-    baseURL,
     method: 'get',
     url: '/me',
   });
 };
 
-const auth = async function (code, baseURL: string) {
+const auth = async function (code) {
   return await request({
-    baseURL,
     method: 'post',
     url: '/auth',
     data: { code },
   });
 };
 
-const getComment = (id: string, baseURL: string): Promise<IComment> => {
+const getComment = (id: string): Promise<IComment> => {
   return request({
-    baseURL,
     method: 'get',
     url: '/comment/' + id,
   });
@@ -74,7 +72,6 @@ const getComment = (id: string, baseURL: string): Promise<IComment> => {
 const getComments = (
   order,
   page,
-  baseURL: string
 ): Promise<{
   comments: Array<IComment>;
   ipp: number;
@@ -82,46 +79,40 @@ const getComments = (
   total: number;
 }> => {
   return request({
-    baseURL,
     method: 'get',
     url: '/comments',
     params: { order_key: order, page: page },
   });
 };
 
-const postComment = (slug, content, baseURL: string): Promise<IComment> => {
+const postComment = (slug, content): Promise<IComment> => {
   return request({
-    baseURL,
     method: 'POST',
     url: '/comments',
     data: { slug, content },
   });
 };
 
-const putFavor = ({ objType, objId, baseURL }) => {
+const putFavor = ({ objType, objId }) => {
   return request({
-    baseURL,
     method: 'POST',
     url: '/favor/',
     data: { type: objType, id: objId },
   });
 };
 
-const putUnfavor = (favId, baseURL: string) => {
+const putUnfavor = (favId) => {
   request({
-    baseURL,
     method: 'DELETE',
-    url: '/favor/' + favId,
+    url: `/favor/${favId}`
   });
 };
 
 const postSubComment = (
   commentId,
-  content,
-  baseURL: string
+  content
 ): Promise<IComment> => {
   return request({
-    baseURL,
     method: 'POST',
     url: '/replies',
     data: { comment_id: commentId, content },
@@ -132,11 +123,9 @@ const getSubComments = (
   comment_id,
   order,
   page,
-  ipp,
-  baseURL: string
+  ipp
 ): Promise<Array<IComment>> => {
   return request({
-    baseURL,
     method: 'GET',
     url: '/replies',
     params: { comment_id, order_key: order, page, ipp },

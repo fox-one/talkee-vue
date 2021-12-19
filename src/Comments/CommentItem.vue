@@ -20,7 +20,11 @@
       </v-layout>
       <meta-bar :comment="comment" :class="classes('comment-item-right-meta', 'flex-grow-0 ml-auto')" />
     </v-layout>
-    <components :is="SubCp" />
+    <components
+      :is="SubCp"
+      :comment="comment"
+      :order="order"
+    />
   </li>
 </template>
 
@@ -49,13 +53,17 @@ export default defineComponent({
       type: Object as PropType<IComment>,
       default: () => ({})
     },
+    order: {
+      type: String as PropType<'favor_count' | 'id' | 'id-asc' | 'id-desc'>,
+      default: 'favor_count'
+    },
     subComment: {
       type: Boolean,
       default: false,
     }
   },
   setup(props) {
-    const { prefixCls, comment, subComment } = props;
+    const { prefixCls, comment, subComment, ...rest } = props;
     const classes = classnames(prefixCls);
     onMounted(() => {
       console.info('Comments mounted!');

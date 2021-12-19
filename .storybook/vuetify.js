@@ -26,7 +26,8 @@ import Vuetify, {
   VSnackbar,
   VSparkline,
   VToolbar,
-  VLayout
+  VLayout,
+  VTextarea
 } from 'vuetify/lib';
 import Uikit from '@foxone/uikit';
 
@@ -66,6 +67,7 @@ Vue.use(Vuetify, {
     VSparkline,
     VToolbar,
     VLayout,
+    VTextarea
   }
 });
 Vue.use(Uikit);

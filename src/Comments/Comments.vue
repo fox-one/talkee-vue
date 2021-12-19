@@ -4,6 +4,7 @@
       v-for="(comment, ind) in comments"
       :key="comment.id || ind"
       :comment="comment"
+      :order="order"
       :sub-comment="subComment"
       :prefix-cls="prefixCls"
     />
@@ -32,10 +33,6 @@ export default defineComponent({
       type: String,
       default: 'talkee'
     },
-    apiBase: {
-      type: String,
-      default: ''
-    },
     order: {
       type: String as PropType<'favor_count' | 'id' | 'id-asc' | 'id-desc'>,
       default: 'favor_count'
@@ -53,8 +50,8 @@ export default defineComponent({
     const comments = ref([] as IComment[]);
     const classes = classnames(props.prefixCls);
     onMounted(async () => {
-      const { order, page, apiBase } = props;
-      const res = await apis.getComments(order, page, apiBase);
+      const { order, page } = props;
+      const res = await apis.getComments(order, page);
       comments.value = res.comments;
     });
 
