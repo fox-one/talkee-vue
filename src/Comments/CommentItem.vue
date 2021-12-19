@@ -20,6 +20,7 @@
       </v-layout>
       <meta-bar :comment="comment" :class="classes('comment-item-right-meta', 'flex-grow-0 ml-auto')" />
     </v-layout>
+    <components :is="SubCp" />
   </li>
 </template>
 
@@ -32,12 +33,13 @@ import {
 import classnames from '@utils/classnames';
 import helper from '@utils/helper';
 import MetaBar from './MetaBar.vue';
+import SubComment from './SubComment.vue';
 
 import type { IComment } from '@/types/api';
 
 export default defineComponent({
   name: 'CommentItem',
-  components: { MetaBar },
+  components: { MetaBar, SubComment },
   props: {
     prefixCls: {
       type: String,
@@ -46,10 +48,14 @@ export default defineComponent({
     comment: {
       type: Object as PropType<IComment>,
       default: () => ({})
+    },
+    subComment: {
+      type: Boolean,
+      default: false,
     }
   },
   setup(props) {
-    const { prefixCls, comment } = props;
+    const { prefixCls, comment, subComment } = props;
     const classes = classnames(prefixCls);
     onMounted(() => {
       console.info('Comments mounted!');
@@ -60,7 +66,8 @@ export default defineComponent({
       avatar_url: comment?.creator?.avatar_url,
       full_name: comment?.creator?.full_name,
       created_at: helper.formatTime(comment.created_at),
-      content: comment?.content
+      content: comment?.content,
+      SubCp: subComment ? SubComment : null
     };
   }
 });

@@ -4,6 +4,7 @@
       v-for="(comment, ind) in comments"
       :key="comment.id || ind"
       :comment="comment"
+      :sub-comment="subComment"
       :prefix-cls="prefixCls"
     />
   </ul>
@@ -43,6 +44,10 @@ export default defineComponent({
       type: Number,
       default: 1
     },
+    subComment: {
+      type: Boolean,
+      default: false,
+    }
   },
   setup(props) {
     const comments = ref([] as IComment[]);
