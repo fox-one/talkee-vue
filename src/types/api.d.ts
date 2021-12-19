@@ -24,9 +24,10 @@ export interface IComment {
   slug: string;
   content: string;
   favor_count: number;
+  reply_count: number;
   created_at: string;
-  creator: IUser | any;
-  reward: IReward | any;
+  creator: IUser | null;
+  reward: IReward | null;
   favored: boolean;
   favor_id: number;
 }

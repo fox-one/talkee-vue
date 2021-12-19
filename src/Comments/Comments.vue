@@ -1,8 +1,8 @@
 <template>
-  <ul :class="classes('comments')">
+  <ul class="pa-0" :class="classes('comments')">
     <comment-item
       v-for="(comment, ind) in comments"
-      :key="ind"
+      :key="comment.id || ind"
       :comment="comment"
       :prefix-cls="prefixCls"
     />
