@@ -19,11 +19,11 @@ storiesOf('Comments', module)
     }
   })
   .add('with text', () => {
-    utils.setDefaultParams({ site_id: 6, slug: 1234, apiBase: "https://talkee-test-api.firesbox.com/api" });
+    utils.setDefaultParams({ site_id: 1, slug: '7000103413-course-728', api_base: "https://talkee-test-api.firesbox.com/api" });
     return {
       components: {
         Comments
       },
-      template: `<Comments sub-comment>{{'Hello Comments'}}</Comments>`
+      template: `<Comments reply favor>{{'Hello Comments'}}</Comments>`
     }
   });

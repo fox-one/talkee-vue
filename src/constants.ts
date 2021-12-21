@@ -16,3 +16,5 @@ export const TWEET_BASE = 'https://twitter.com/intent/tweet';
 
 export const DEFAULT_AVATAR =
   'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDgiIGhlaWdodD0iNDgiIHZpZXdCb3g9IjAgMCA0OCA0OCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMjQiIGN5PSIyNCIgcj0iMjQiIGZpbGw9IiNGM0YzRjMiLz4KPC9zdmc+Cg==';
+
+export const STORAGE_KEY = '$__TALKEE_CACHE__';

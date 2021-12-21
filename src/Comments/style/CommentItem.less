@@ -14,6 +14,49 @@
     flex: 1;
     padding: 10px 0;
 
+    &-content {
+      position: relative;
+      width: 100%;
+      max-height: 7.5em;
+      overflow: hidden;
+      line-height: 1.5;
+      transition: max-height 0.5s ease-out;
+
+      &::before {
+        float: right;
+        width: 0;
+        height: calc(100% - 19px);
+        content: "";
+      }
+
+      &::after {
+        position: absolute;
+        z-index: 2;
+        width: 100%;
+        height: 100%;
+        background-color: inherit;
+        content: "";
+      }
+
+      &-more {
+        max-height: 150em;
+        -webkit-line-clamp: 9999;
+
+        &::after {
+          display: none;
+        }
+      }
+    }
+
+    &-more.v-btn.v-btn--text {
+      z-index: 2;
+      float: right;
+      clear: both;
+      min-width: 0 !important;
+      height: auto !important;
+      font-size: 14px !important;
+    }
+
     &-meta {
       margin-top: 12px;
     }

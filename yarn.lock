@@ -13164,7 +13164,7 @@ pbkdf2@^3.0.3:
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
 
-peeler-js@~0.4.2:
+peeler-js@^0.4.2, peeler-js@~0.4.2:
   version "0.4.2"
   resolved "https://registry.yarnpkg.com/peeler-js/-/peeler-js-0.4.2.tgz#d97833283ec7948677b1ef6aabcb7f3f64ebfa94"
   integrity sha512-/uP6qhytnITt6XngB5iquyKWnV4xjtkJTEv8eWYdmA2O3hJ/CHx1NSmyDl1JRx+zjjnU4VcPMFOIuJcmXV5WqA==

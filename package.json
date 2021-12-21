@@ -40,7 +40,8 @@
     "@foxone/vue-scroll": "~0.0.12",
     "@links-japan/talkee": "^0.2.6",
     "axios": "~0.24.0",
-    "classnames": "~2.2.6"
+    "classnames": "~2.2.6",
+    "peeler-js": "~0.4.2"
   },
   "devDependencies": {
     "@babel/core": "~7.10.0",

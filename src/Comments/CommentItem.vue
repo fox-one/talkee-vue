@@ -14,16 +14,37 @@
           <span :class="classes('comment-item-right-top-name', 'f-body-2 text--primary mr-2')">{{ full_name }}</span>
           <span :class="classes('comment-item-right-top-time', 'f-caption f-greyscale-3')">{{ created_at }}</span>
         </div>
-        <p :class="classes('comment-item-right-content', 'mt-4 f-body-2')">
-          {{ content }}
-        </p>
+        <div class="d-flex">
+          <p :class="`${classes('comment-item-right-content', 'mt-4 f-body-2')} ${isMore ? classes('comment-item-right-content-more') : ''}`">
+            <v-btn
+              :class="classes('comment-item-right-more', 'pa-0')"
+              text
+              small
+              color="primary"
+              @click="isMore = !isMore"
+            >
+              {{ isMore ? meta.less : meta.more }}
+            </v-btn>
+            {{ content }}
+          </p>
+        </div>
       </v-layout>
-      <meta-bar :comment="comment" :class="classes('comment-item-right-meta', 'flex-grow-0 ml-auto')" />
+      <meta-bar
+        :comment="comment"
+        :reply="reply"
+        :favor="favor"
+        :class="classes('comment-item-right-meta', 'flex-grow-0 ml-auto')"
+        @click:reply="handleReply"
+        @error="(e) => $emit('error', e)"
+      />
     </v-layout>
     <components
-      :is="SubCp"
+      :is="subComment"
+      v-show="showSubComment"
       :comment="comment"
       :order="order"
+      :favor="favor"
+      @error="(e) => $emit('error', e)"
     />
   </li>
 </template>
@@ -31,13 +52,15 @@
 <script lang="ts">
 import {
   defineComponent,
-  onMounted,
-  PropType
+  PropType,
+  reactive,
+  ref
 } from '@vue/composition-api';
 import classnames from '@utils/classnames';
 import helper from '@utils/helper';
 import MetaBar from './MetaBar.vue';
 import SubComment from './SubComment.vue';
+import { $t } from '@/i18n';
 
 import type { IComment } from '@/types/api';
 
@@ -57,17 +80,24 @@ export default defineComponent({
       type: String as PropType<'favor_count' | 'id' | 'id-asc' | 'id-desc'>,
       default: 'favor_count'
     },
-    subComment: {
+    reply: {
+      type: Boolean,
+      default: false,
+    },
+    favor: {
       type: Boolean,
       default: false,
     }
   },
   setup(props) {
-    const { prefixCls, comment, subComment, ...rest } = props;
+    const { prefixCls, comment } = props;
     const classes = classnames(prefixCls);
-    onMounted(() => {
-      console.info('Comments mounted!');
-    });
+    const proxy = reactive({ showSubComment: false });
+    const isMore = ref(false);
+    const meta = {
+      more: $t('content_more'),
+      less: $t('content_less')
+    };
 
     return {
       classes,
@@ -75,8 +105,20 @@ export default defineComponent({
       full_name: comment?.creator?.full_name,
       created_at: helper.formatTime(comment.created_at),
       content: comment?.content,
-      SubCp: subComment ? SubComment : null
+      isMore,
+      meta,
+      ...proxy
     };
+  },
+  computed: {
+    subComment(): any {
+      return this.reply ? SubComment : null;
+    }
+  },
+  methods: {
+    handleReply() {
+      this.showSubComment = !this.showSubComment;
+    }
   }
 });
 </script>

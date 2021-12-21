@@ -1,5 +1,36 @@
-import { APP_TOKEN, APP_ENV } from '../constants';
+import { APP_TOKEN, APP_ENV, STORAGE_KEY } from '../constants';
 import { $t } from '../i18n';
+import storage from './storage';
+import Base64 from './base64';
+
+function setStore (key: string, value: any) {
+  try {
+    const store = JSON.parse(storage.get(STORAGE_KEY) ?? '{}');
+    store[key] = value;
+    return storage.set(STORAGE_KEY, JSON.stringify(store));
+  } catch (e) {
+    return false;
+  }
+}
+
+function getStore (key: string) {
+  try {
+    const store = JSON.parse(storage.get(STORAGE_KEY) ?? '{}');
+    return store[key];
+  } catch (e) {
+    return null;
+  }
+}
+
+function removeStore (key: string) {
+  try {
+    const store = JSON.parse(storage.get(STORAGE_KEY) ?? '{}');
+    delete store[key];
+    return storage.set(STORAGE_KEY, JSON.stringify(store));
+  } catch (e) {
+    return null;
+  }
+}
 
 export const helper = {
   setDefaultParams: function (params) {
@@ -20,37 +51,56 @@ export const helper = {
     return ret;
   },
 
+  buildLoginURL: function (url?: string) {
+    const { site_id, slug, login_url } = this.getDefaultParams();
+    const state = Base64.encode(
+      JSON.stringify({
+        s: site_id,
+        p: slug
+      })
+    );
+    let loginUrl: string = url || login_url;
+    if (!loginUrl) return '';
+    const stateInd = loginUrl.indexOf('state=');
+    if (~stateInd) {
+      loginUrl =
+        loginUrl.slice(0, stateInd + 6) +
+        state +
+        loginUrl.slice(stateInd + 6);
+    } else {
+      loginUrl = loginUrl + `&state=${state}`;
+    }
+    return loginUrl;
+  },
+
+
   getToken: function () {
     if (APP_TOKEN && APP_ENV === 'development') {
       return APP_TOKEN;
     }
-    return localStorage.getItem('talkee-jwt-token');
+    return getStore('jwt-token');
   },
 
   setProfile: function (me) {
-    localStorage.setItem('talkee-profile', JSON.stringify(me));
+    return setStore('profile', me);
   },
 
   getProfile: function () {
-    try {
-      return JSON.parse(localStorage.getItem('talkee-profile') ?? '') || null;
-    } catch (e) {
-      return null;
-    }
+    return getStore('profile');
   },
 
   setAuth: function (data) {
-    localStorage.setItem('talkee-jwt-token', data.token);
-    localStorage.setItem('talkee-user-id', data.user_id);
+    setStore('jwt-token', data.token);
+    setStore('user-id', data.user_id);
   },
 
   removeAuth: function () {
-    localStorage.removeItem('talkee-jwt-token');
-    localStorage.removeItem('talkee-user-id');
+    removeStore('jwt-token');
+    removeStore('user-id');
   },
 
   getRedirect: function () {
-    return localStorage.getItem('talkee-redirect-url');
+    return getStore('redirect-url');
   },
 
   setRedirect: function (hash?: boolean) {
@@ -61,11 +111,11 @@ export const helper = {
     if (hash && !url.includes('#talkee-')) {
       url += '#talkee-anchor';
     }
-    return localStorage.setItem('talkee-redirect-url', url);
+    return setStore('redirect-url', url);
   },
 
   clearRedirect: function () {
-    return localStorage.removeItem('talkee-redirect-url');
+    return removeStore('redirect-url');
   },
 
   formatTime: function (timeStr) {
@@ -81,6 +131,7 @@ export const helper = {
       ds.getHours()
     )}:${pad(ds.getMinutes())}`;
     if (ds.getFullYear() !== thisYear) {
+      // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
       ret = ds.getFullYear() + '/' + ret;
     }
     return ret;

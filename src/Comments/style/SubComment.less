@@ -1,0 +1,90 @@
+.talkee-comment-sub {
+  padding-left: 25%;
+
+  &-textarea {
+    width: 100%;
+
+    .v-label {
+      top: 8px !important;
+      font-size: 12px;
+    }
+
+    textarea {
+      margin-top: 4px !important;
+      font-size: 14px !important;
+    }
+
+    .v-text-field__details {
+      display: none;
+    }
+  }
+
+  &-btn {
+    padding: 0 !important;
+  }
+
+  &-wrapper {
+    width: 100%;
+  }
+
+  &-item {
+    &-left {
+      flex-basis: 36px;
+    }
+
+    &-right {
+      flex: 1;
+
+      &-top {
+        &-time {
+          font-size: 10px;
+        }
+      }
+
+
+      &-content {
+        position: relative;
+        width: 100%;
+        max-height: 7.5em;
+        overflow: hidden;
+        line-height: 1.5;
+        transition: max-height 0.5s ease-out;
+
+        &::before {
+          float: right;
+          width: 0;
+          height: calc(100% - 19px);
+          content: "";
+        }
+
+        &::after {
+          position: absolute;
+          top: 0;
+          left: 0;
+          z-index: 1;
+          width: 100%;
+          height: 100%;
+          content: "";
+        }
+
+        &-more {
+          max-height: 150em;
+          -webkit-line-clamp: 9999;
+
+          &::after {
+            display: none;
+          }
+        }
+      }
+
+      &-more.v-btn.v-btn--text {
+        z-index: 2;
+        float: right;
+        clear: both;
+        min-width: 0 !important;
+        height: auto !important;
+        font-size: 14px !important;
+      }
+    }
+  }
+}

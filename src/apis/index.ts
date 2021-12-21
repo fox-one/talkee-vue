@@ -6,7 +6,7 @@ import type { IComment } from '@/types/api';
 
 const request = async function (opts): Promise<any> {
   // eslint-disable-next-line prefer-const
-  let { apiBase, ...params } = utils.getDefaultParams() || {};
+  let { api_base, ...params } = utils.getDefaultParams() || {};
   if (opts.params) {
     params = Object.assign(params, opts.params);
   }
@@ -24,7 +24,7 @@ const request = async function (opts): Promise<any> {
   try {
     resp = await axios({
       method: opts.method || 'get',
-      baseURL: opts.baseURL || apiBase || API_BASE || '',
+      baseURL: opts.baseURL || api_base || API_BASE || '',
       url: opts.url || '',
       data: opts.data || {},
       params,
@@ -93,16 +93,16 @@ const postComment = (slug, content): Promise<IComment> => {
   });
 };
 
-const putFavor = ({ objType, objId }) => {
+const putFavor = (data: { type: string, id: number }) => {
   return request({
     method: 'POST',
     url: '/favor/',
-    data: { type: objType, id: objId },
+    data,
   });
 };
 
 const putUnfavor = (favId) => {
-  request({
+  return request({
     method: 'DELETE',
     url: `/favor/${favId}`
   });
@@ -124,7 +124,12 @@ const getSubComments = (
   order,
   page,
   ipp
-): Promise<Array<IComment>> => {
+): Promise<{
+  ipp: number;
+  page: number;
+  total: number;
+  replies: Array<IComment>;
+}> => {
   return request({
     method: 'GET',
     url: '/replies',

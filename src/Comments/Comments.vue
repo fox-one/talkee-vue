@@ -2,11 +2,10 @@
   <ul class="pa-0" :class="classes('comments')">
     <comment-item
       v-for="(comment, ind) in comments"
+      v-bind="$props"
       :key="comment.id || ind"
       :comment="comment"
-      :order="order"
-      :sub-comment="subComment"
-      :prefix-cls="prefixCls"
+      @error="(e) => $emit('error', e)"
     />
   </ul>
 </template>
@@ -41,18 +40,26 @@ export default defineComponent({
       type: Number,
       default: 1
     },
-    subComment: {
+    reply: {
+      type: Boolean,
+      default: false,
+    },
+    favor: {
       type: Boolean,
       default: false,
     }
   },
-  setup(props) {
+  setup(props, context) {
     const comments = ref([] as IComment[]);
     const classes = classnames(props.prefixCls);
     onMounted(async () => {
       const { order, page } = props;
-      const res = await apis.getComments(order, page);
-      comments.value = res.comments;
+      try {
+        const res = await apis.getComments(order, page);
+        comments.value = res.comments;
+      } catch (err) {
+        context.emit('error', err);
+      }
     });
 
     return { comments, classes };
