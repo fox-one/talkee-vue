@@ -1,10 +1,10 @@
 import { storiesOf } from '@storybook/vue';
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
 import { themes } from '@storybook/theming';
-import Sortbar from '../';
+import SortBar from '../';
 import '../style';
 
-storiesOf('Sortbar', module)
+storiesOf('SortBar', module)
   .addParameters({
     readme: {
       sidebar: require('../README.md').default,
@@ -17,9 +17,9 @@ storiesOf('Sortbar', module)
       defaultViewport: 'iphone6'
     }
   })
-  .add('with text', () => ({
+  .add('basic usage', () => ({
     components: {
-      Sortbar
+      SortBar
     },
-    template: `<Sortbar>{{'Hello Sortbar'}}</Sortbar>`
+    template: `<SortBar>{{'Hello SortBar'}}</SortBar>`
   }));

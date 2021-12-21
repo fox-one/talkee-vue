@@ -1,10 +1,10 @@
 import { storiesOf } from '@storybook/vue';
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
 import { themes } from '@storybook/theming';
-import Pagination from '../';
+import LoginBtn from '../';
 import '../style';
 
-storiesOf('Pagination', module)
+storiesOf('LoginBtn', module)
   .addParameters({
     readme: {
       sidebar: require('../README.md').default,
@@ -17,9 +17,9 @@ storiesOf('Pagination', module)
       defaultViewport: 'iphone6'
     }
   })
-  .add('with text', () => ({
+  .add('basic usage', () => ({
     components: {
-      Pagination
+      LoginBtn
     },
-    template: `<Pagination>{{'Hello Pagination'}}</Pagination>`
+    template: `<login-btn />`
   }));

@@ -14,6 +14,7 @@
       :ripple="false"
       color="primary"
       :class="classes('comment-sub-btn')"
+      :loading="loading"
       @click="handleSubmit"
     >
       {{ meta.submit }}
@@ -105,6 +106,7 @@ export default defineComponent({
     const { prefixCls, comment, order } = props;
     const classes = classnames(prefixCls);
     const content = ref('');
+    const loading = ref(false);
     const isMore = ref(false);
     const subcomments = ref([] as any[]);
     const meta = {
@@ -118,7 +120,7 @@ export default defineComponent({
       subcomments.value = res.replies;
     });
 
-    return { classes, content, isMore, meta, subcomments };
+    return { classes, content, loading, isMore, meta, subcomments };
   },
   methods: {
     async handleSubmit() {
@@ -128,6 +130,7 @@ export default defineComponent({
         const url = helper.buildLoginURL();
         url && location.assign(url);
       } else {
+        this.loading = true;
         try {
           const res = await apis.postSubComment(
             this.comment.id,
@@ -139,6 +142,7 @@ export default defineComponent({
         } catch (e) {
           this.$emit('error', e);
         }
+        this.loading = false;
       }
     },
     formatTime(time: string) {

@@ -1,1 +1,1 @@
-import './Sortbar.less';
+import './SortBar.scss';

@@ -85,11 +85,11 @@ const getComments = (
   });
 };
 
-const postComment = (slug, content): Promise<IComment> => {
+const postComment = (content): Promise<IComment> => {
   return request({
     method: 'POST',
     url: '/comments',
-    data: { slug, content },
+    data: { slug: utils.getDefaultParams().slug, content },
   });
 };
 

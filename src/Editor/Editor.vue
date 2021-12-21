@@ -1,31 +1,85 @@
 <template>
-  <div :class="classes()">
-    <slot name="default" />
-  </div>
+  <v-layout :class="classes('editor')" >
+    <div :class="classes('editor-left')">
+      <v-avatar
+        size="32"
+        :class="classes('editor-avatar')"
+      >
+        <v-img :src="profile.avatar_url" />
+      </v-avatar>
+    </div>
+    <v-layout column align-end :class="classes('editor-right')">
+      <v-textarea
+        v-model="content"
+        solo
+        height="60"
+        :label="meta.label"
+        :class="classes('editor-textarea')"
+      />
+      <v-btn
+        text
+        small
+        plain
+        :ripple="false"
+        color="primary"
+        :class="classes('editor-btn')"
+        :loading="loading"
+        @click="handleSubmit"
+      >
+        {{ meta.submit }}
+      </v-btn>
+    </v-layout>
+  </v-layout>
 </template>
 
 <script lang="ts">
 import {
   defineComponent,
-  onMounted
+  ref
 } from '@vue/composition-api';
 import classnames from '@utils/classnames';
+import helper from '@utils/helper';
+import apis from '@apis/index';
+import { $t } from '@/i18n';
 
 export default defineComponent({
   name: 'Editor',
   props: {
     prefixCls: {
       type: String,
-      default: 'editor'
+      default: 'talkee'
     }
   },
   setup(props) {
     const classes = classnames(props.prefixCls);
-    onMounted(() => {
-      console.info('Editor mounted!');
-    });
+    const content = ref('');
+    const loading = ref(false);
+    const meta = {
+      label: $t('comment_placeholder'),
+      submit: $t('submit'),
+    };
+    const profile = helper.getProfile() || {};
 
-    return { classes };
+    return { classes, content, loading, meta, profile };
+  },
+  methods: {
+    async handleSubmit() {
+      if (!this.content) return;
+      const isLogin = helper.getToken() && helper.getProfile();
+      if (!isLogin) {
+        const url = helper.buildLoginURL();
+        url && location.assign(url);
+      } else {
+        this.loading = true;
+        try {
+          await apis.postComment(this.content);
+          this.content = '';
+        } catch (err) {
+          this.$emit('error', err);
+        }
+        this.loading = false;
+      }
+    }
   }
 });
 </script>

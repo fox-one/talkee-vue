@@ -18,7 +18,7 @@ storiesOf('Comments', module)
       defaultViewport: 'iphone6'
     }
   })
-  .add('with text', () => {
+  .add('basic usage', () => {
     utils.setDefaultParams({ site_id: 1, slug: '7000103413-course-728', api_base: "https://talkee-test-api.firesbox.com/api" });
     return {
       components: {

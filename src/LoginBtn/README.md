@@ -1,11 +1,11 @@
-# Expansion
+# LoginBtn
 
 ## APIs
 
 ### Props
 | Name | Description | Type | Default |
 | --- | --- | --- | --- |
-| prefixCls(optional) | The classname prefix for wholly control the component style | string | `'expansion'` | 
+| prefixCls(optional) | The classname prefix for wholly control the component style | string | `'loginbtn'` | 
 
 ### Slots
 | Name | Description |
@@ -16,18 +16,18 @@
 
 ```vue
 <template>
-  <Expansion>
-    {{ 'Hello Expansion' }}
-  </Expansion>
+  <LoginBtn>
+    {{ 'Hello LoginBtn' }}
+  </LoginBtn>
 </template>
 
 <script lang="ts">
   import { Component, Vue } from 'vue-property-decorator';
-  import { Expansion } from './Expansion';
+  import { LoginBtn } from './LoginBtn';
 
   @Component(
     components: {
-      Expansion
+      LoginBtn
     }
   )
   export class App extends Vue {

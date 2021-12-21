@@ -1,0 +1,18 @@
+.talkee-sortbar {
+  &-left {
+    background: url(../../statics/icons/comment.svg) no-repeat left -1px;
+    padding-left: 24px;
+  }
+
+  &-right {
+    background: url(../../statics/icons/sort.svg) no-repeat left 2px;
+    padding-left: 24px;
+  }
+
+  &-btn {
+    padding: 0 !important;
+    &-active {
+      color: var(--v-primary-base) !important;
+    }
+  }
+}

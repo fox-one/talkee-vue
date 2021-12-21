@@ -1,4 +1,4 @@
-# Sortbar
+# SortBar
 
 ## APIs
 
@@ -16,18 +16,18 @@
 
 ```vue
 <template>
-  <Sortbar>
-    {{ 'Hello Sortbar' }}
-  </Sortbar>
+  <SortBar>
+    {{ 'Hello SortBar' }}
+  </SortBar>
 </template>
 
 <script lang="ts">
   import { Component, Vue } from 'vue-property-decorator';
-  import { Sortbar } from './Sortbar';
+  import { SortBar } from './SortBar';
 
   @Component(
     components: {
-      Sortbar
+      SortBar
     }
   )
   export class App extends Vue {

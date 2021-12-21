@@ -1,4 +1,31 @@
-.prefix-editor {
-  display: block;
-  color: green;
+.talkee-editor {
+  &-left {
+    flex-basis: 46px;
+  }
+
+  &-right {
+    flex: 1;
+  }
+
+  &-textarea {
+    width: 100%;
+
+    .v-label {
+      top: 8px !important;
+      font-size: 12px;
+    }
+
+    textarea {
+      margin-top: 4px !important;
+      font-size: 14px !important;
+    }
+
+    .v-text-field__details {
+      display: none;
+    }
+  }
+
+  &-btn {
+    padding: 0 !important;
+  }
 }

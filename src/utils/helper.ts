@@ -38,7 +38,7 @@ export const helper = {
   },
 
   getDefaultParams: function () {
-    return (window as any).__TALKEE_PARAMS__;
+    return (window as any).__TALKEE_PARAMS__ || {};
   },
 
   getUrlQuery: function () {
@@ -53,14 +53,15 @@ export const helper = {
 
   buildLoginURL: function (url?: string) {
     const { site_id, slug, login_url } = this.getDefaultParams();
+    let loginUrl: string = url || login_url;
+    if (!loginUrl) return '';
+
     const state = Base64.encode(
       JSON.stringify({
         s: site_id,
         p: slug
       })
     );
-    let loginUrl: string = url || login_url;
-    if (!loginUrl) return '';
     const stateInd = loginUrl.indexOf('state=');
     if (~stateInd) {
       loginUrl =
@@ -89,7 +90,7 @@ export const helper = {
     return getStore('profile');
   },
 
-  setAuth: function (data) {
+  setAuth: function (data: { token:string; user_id:string }) {
     setStore('jwt-token', data.token);
     setStore('user-id', data.user_id);
   },
