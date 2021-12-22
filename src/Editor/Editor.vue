@@ -73,6 +73,7 @@ export default defineComponent({
         this.loading = true;
         try {
           await apis.postComment(this.content);
+          this.$emit('comment', this.content);
           this.content = '';
         } catch (err) {
           this.$emit('error', err);

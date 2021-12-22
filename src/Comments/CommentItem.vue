@@ -15,7 +15,7 @@
           <span :class="classes('comment-item-right-top-time', 'f-caption f-greyscale-3')">{{ created_at }}</span>
         </div>
         <div class="d-flex">
-          <p :class="`${classes('comment-item-right-content', 'mt-4 f-body-2')} ${isMore ? classes('comment-item-right-content-more') : ''}`">
+          <p :class="`${classes('comment-item-right-content', 'mt-6 f-body-2')} ${isMore ? classes('comment-item-right-content-more') : ''}`">
             <v-btn
               :class="classes('comment-item-right-more', 'pa-0')"
               text

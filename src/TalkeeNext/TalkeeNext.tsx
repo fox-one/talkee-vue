@@ -25,7 +25,7 @@ export default defineComponent({
       type: String,
       default: 'talkee'
     },
-    site_id: {
+    siteId: {
       type: [Number, String],
       default: null
     },
@@ -33,7 +33,11 @@ export default defineComponent({
       type: String,
       default: null
     },
-    api_base: {
+    apiBase: {
+      type: String,
+      default: null
+    },
+    loginUrl: {
       type: String,
       default: null
     },
@@ -41,22 +45,24 @@ export default defineComponent({
   setup(props, context) {
     const {
       prefixCls,
-      site_id,
+      siteId,
       slug,
-      api_base
+      apiBase,
+      loginUrl
     } = props;
     const classes = classnames(prefixCls);
     onBeforeMount(() => {
-      if (site_id == null || slug == null || api_base == null) {
+      if (siteId == null || slug == null || apiBase == null || loginUrl == null) {
         context.emit('error', 'missing params!');
         logger.error('missing params!');
         return;
       }
       helper.setDefaultParams({
-        site_id,
+        site_id: siteId,
         slug,
-        api_base
-      })
+        api_base: apiBase,
+        login_url: loginUrl
+      });
     });
 
     return { classes, isLogin: helper.getToken() && helper.getProfile() };
@@ -68,13 +74,31 @@ export default defineComponent({
     }
   },
   render(h: CreateElement): VNode {
+    const { prefixCls } = this.$props;
+
     return (
       <div class={this.classes('', 'd-flex flex-column')}>
-        <SortBar vOn:error={this.handleError} />
+        <SortBar
+          vOn:error={this.handleError}
+          prefixCls={prefixCls}
+          {...{ attrs: this.$attrs }}
+        />
         <div class="my-6 text-center">
-          { this.isLogin ? <Editor /> : <LoginBtn />}
+          { this.isLogin ? <Editor
+            vOn:error={this.handleError}
+            prefixCls={prefixCls}
+            {...{ attrs: this.$attrs }}
+          /> : <LoginBtn
+            vOn:error={this.handleError}
+            prefixCls={prefixCls}
+            {...{ attrs: this.$attrs }}
+          />}
         </div>
-        <Comments />
+        <Comments
+          vOn:error={this.handleError}
+          prefixCls={prefixCls}
+          {...{ attrs: this.$attrs }}
+        />
       </div>
     );
   }

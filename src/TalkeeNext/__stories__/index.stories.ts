@@ -23,9 +23,12 @@ storiesOf('TalkeeNext', module)
         TalkeeNext
       },
       template: `<talkee-next
-        site_id='1'
+        siteId='1'
         slug='7000103413-course-728'
-        api_base='https://talkee-test-api.firesbox.com/api'
+        apiBase='https://talkee-test-api.firesbox.com/api'
+        loginUrl='https://mixin-oauth.firesbox.com/?client_id=2827d81f-6ae0-4842-b92f-6576afe36863&scope=PROFILE:READ+PHONE:READ&response_type=code'
+        :reply="true"
+        :favor="true"
       />`
     }
   });
