@@ -1,5 +1,5 @@
 <template>
-  <li :class="classes('comment-item')">
+  <li :class="classes('comment-item', 'py-5')">
     <v-layout justify-space-between align-start>
       <div :class="classes('comment-item-left')">
         <v-avatar
@@ -15,7 +15,7 @@
           <span :class="classes('comment-item-right-top-time', 'f-caption f-greyscale-3')">{{ created_at }}</span>
         </div>
         <div class="d-flex">
-          <p :class="`${classes('comment-item-right-content', 'mt-6 f-body-2')} ${isMore ? classes('comment-item-right-content-more') : ''}`">
+          <div :class="`${classes('comment-item-right-content', 'mt-6 f-body-2')} ${isMore ? classes('comment-item-right-content-more') : ''}`">
             <v-btn
               :class="classes('comment-item-right-more', 'pa-0')"
               text
@@ -26,7 +26,7 @@
               {{ isMore ? meta.less : meta.more }}
             </v-btn>
             {{ content }}
-          </p>
+          </div>
         </div>
       </v-layout>
       <meta-bar
@@ -41,6 +41,7 @@
     <components
       :is="subComment"
       v-show="showSubComment"
+      class="mt-4"
       :comment="comment"
       :order="order"
       :favor="favor"

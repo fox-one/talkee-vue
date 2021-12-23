@@ -4,7 +4,7 @@
       {{ reply_text }}
     </div>
     <div v-if="favor" :class="classes('meta-favor', isFavor ? classes('meta-favor-liked') : '')" @click="handleFavor">
-      {{ favor_text }}
+      {{ favor_text || '' }}
     </div>
   </v-layout>
 </template>

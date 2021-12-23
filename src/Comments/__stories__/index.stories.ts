@@ -24,6 +24,6 @@ storiesOf('Comments', module)
       components: {
         Comments
       },
-      template: `<Comments reply favor>{{'Hello Comments'}}</Comments>`
+      template: `<Comments reply favor height='80vh' class="mt-10 px-4">{{'Hello Comments'}}</Comments>`
     }
   });

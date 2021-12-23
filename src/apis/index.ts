@@ -6,7 +6,7 @@ import type { IComment } from '@/types/api';
 
 const request = async function (opts): Promise<any> {
   // eslint-disable-next-line prefer-const
-  let { api_base, ...params } = utils.getDefaultParams() || {};
+  let { api_base, login_url, ...params } = utils.getDefaultParams() || {};
   if (opts.params) {
     params = Object.assign(params, opts.params);
   }

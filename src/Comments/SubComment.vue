@@ -13,55 +13,30 @@
       plain
       :ripple="false"
       color="primary"
-      :class="classes('comment-sub-btn')"
+      :class="classes('comment-sub-btn', 'align-self-start')"
       :loading="loading"
       @click="handleSubmit"
     >
       {{ meta.submit }}
     </v-btn>
-    <section v-if="subcomments.length" :class="classes('comment-sub-wrapper', 'align-self-start mt-2')">
-      <v-layout
+    <section v-if="subcomments.length" :class="classes('comment-sub-wrapper', 'd-flex flex-column align-self-start mt-2')">
+      <sub-comment-item
         v-for="(sub, ind) in subcomments"
         :key="sub.id || ind"
-        justify-space-between
-        align-start
+        :subcomment="sub"
+      />
+      <v-btn
+        v-if="hasNext"
+        text 
+        small
+        plain
+        :ripple="false"
+        color="accent"
+        class="pa-0 align-self-end mt-2 mr-6"
+        @click="loadData"
       >
-        <div :class="classes('comment-sub-item-left')">
-          <v-avatar
-            size="24"
-            :class="classes('comment-sub-item-left-avatar')"
-          >
-            <v-img :src="sub.creator.avatar_url" />
-          </v-avatar>
-        </div>
-        <v-layout :class="classes('comment-sub-item-right')" column>
-          <div :class="classes('comment-sub-item-right-top')">
-            <span :class="classes('comment-sub-item-right-top-name', 'f-caption text--primary mr-2')">{{ sub.creator.full_name }}</span>
-            <span :class="classes('comment-sub-item-right-top-time', 'f-greyscale-4')">{{ formatTime(sub.created_at) }}</span>
-          </div>
-          <div class="d-flex">
-            <p :class="`${classes('comment-sub-item-right-content', 'mt-4 f-body-2')} ${isMore ? classes('comment-sub-item-right-content-more') : ''}`">
-              <v-btn
-                :class="classes('comment-sub-item-right-more', 'pa-0')"
-                text
-                small
-                color="primary"
-                @click="isMore = !isMore"
-              >
-                {{ isMore ? meta.less : meta.more }}
-              </v-btn>
-              {{ sub.content }}
-            </p>
-          </div>
-        </v-layout>
-        <meta-bar
-          :comment="sub"
-          :reply="false"
-          :favor="favor"
-          type="reply"
-          :class="classes('comment-sub-item-right-meta', 'flex-grow-0 ml-auto')"
-        />
-      </v-layout>
+        {{ meta.loadMore }}
+      </v-btn>
     </section>
   </v-layout>
 </template>
@@ -69,7 +44,6 @@
 <script lang="ts">
 import {
   defineComponent,
-  onMounted,
   PropType,
   ref
 } from '@vue/composition-api';
@@ -77,13 +51,13 @@ import classnames from '@utils/classnames';
 import helper from '@utils/helper';
 import apis from '@apis/index';
 import { $t } from '@/i18n';
-import MetaBar from './MetaBar.vue';
+import SubCommentItem from './SubCommentItem.vue';
 
 import type { IComment } from '@/types/api';
 
 export default defineComponent({
   name: 'SubComment',
-  components: { MetaBar },
+  components: { SubCommentItem },
   props: {
     prefixCls: {
       type: String,
@@ -103,24 +77,23 @@ export default defineComponent({
     }
   },
   setup(props) {
-    const { prefixCls, comment, order } = props;
+    const { prefixCls } = props;
     const classes = classnames(prefixCls);
     const content = ref('');
     const loading = ref(false);
-    const isMore = ref(false);
+    const page = ref(1);
+    const hasNext = ref(true);
     const subcomments = ref([] as any[]);
     const meta = {
       label: $t('sub_comment_placeholder'),
       submit: $t('submit'),
-      more: $t('content_more'),
-      less: $t('content_less')
+      loadMore: $t('load_more')
     };
-    onMounted(async () => {
-      const res = await apis.getSubComments(comment.id, order, 1, 15);
-      subcomments.value = res.replies;
-    });
 
-    return { classes, content, loading, isMore, meta, subcomments };
+    return { classes, content, loading, meta, subcomments, page, hasNext };
+  },
+  mounted () {
+    this.loadData();
   },
   methods: {
     async handleSubmit() {
@@ -136,6 +109,7 @@ export default defineComponent({
             this.comment.id,
             this.content.trim(),
           );
+          this.$emit('comment:sub', this.content);
           res.creator = helper.getProfile();
           this.subcomments.push(res);
           this.content = '';
@@ -143,6 +117,17 @@ export default defineComponent({
           this.$emit('error', e);
         }
         this.loading = false;
+      }
+    },
+    async loadData() {
+      if (!this.hasNext) return;
+
+      try {
+        const res = await apis.getSubComments(this.comment.id, this.order, this.page++, 15);
+        this.hasNext = res.replies.length >= res.ipp;
+        this.subcomments.push(...res.replies);
+      } catch (err) {
+        this.$emit('error', err);
       }
     },
     formatTime(time: string) {
