@@ -40,10 +40,15 @@ import {
   ref
 } from '@vue/composition-api';
 import classnames from '@utils/classnames';
+import { VLayout, VBtn } from 'vuetify/lib';
 import { $t } from '@/i18n';
 
 export default defineComponent({
   name: 'SortBar',
+  components: {
+    VLayout,
+    VBtn
+  },
   props: {
     prefixCls: {
       type: String,

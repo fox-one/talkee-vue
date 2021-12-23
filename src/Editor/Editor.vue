@@ -37,6 +37,7 @@ import {
   defineComponent,
   ref
 } from '@vue/composition-api';
+import { VLayout, VBtn, VTextarea, VAvatar, VImg } from 'vuetify/lib';
 import classnames from '@utils/classnames';
 import helper from '@utils/helper';
 import apis from '@apis/index';
@@ -44,6 +45,13 @@ import { $t } from '@/i18n';
 
 export default defineComponent({
   name: 'Editor',
+  components: {
+    VLayout,
+    VBtn,
+    VTextarea,
+    VAvatar,
+    VImg
+  },
   props: {
     prefixCls: {
       type: String,

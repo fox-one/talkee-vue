@@ -39,6 +39,7 @@ import {
   PropType,
   ref
 } from '@vue/composition-api';
+import FLoading from '@foxone/uikit/src/components/FLoading';
 import apis from '@apis/index';
 import { scrollWrapperHeight } from '@foxone/vue-scroll';
 import FScroll from '@foxone/vue-scroll/es/Scroll';
@@ -50,7 +51,8 @@ export default defineComponent({
   name: 'Comments',
   components: {
     CommentItem,
-    FScroll
+    FScroll,
+    FLoading
   },
   props: {
     prefixCls: {

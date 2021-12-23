@@ -47,6 +47,7 @@ import {
   PropType,
   ref
 } from '@vue/composition-api';
+import { VLayout, VBtn, VTextarea } from 'vuetify/lib';
 import classnames from '@utils/classnames';
 import helper from '@utils/helper';
 import apis from '@apis/index';
@@ -57,7 +58,7 @@ import type { IComment } from '@/types/api';
 
 export default defineComponent({
   name: 'SubComment',
-  components: { SubCommentItem },
+  components: { SubCommentItem, VLayout, VBtn, VTextarea },
   props: {
     prefixCls: {
       type: String,

@@ -15,6 +15,7 @@ import {
   PropType,
   ref
 } from '@vue/composition-api';
+import { VLayout } from 'vuetify/lib';
 import classnames from '@utils/classnames';
 import apis from '@apis/index';
 import helper from '@utils/helper';
@@ -24,6 +25,7 @@ import type { IComment } from '@/types/api';
 
 export default defineComponent({
   name: 'MetaBar',
+  components: { VLayout },
   props: {
     prefixCls: {
       type: String,

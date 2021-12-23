@@ -58,6 +58,7 @@ import {
   reactive,
   ref
 } from '@vue/composition-api';
+import { VLayout, VBtn, VAvatar, VImg } from 'vuetify/lib';
 import classnames from '@utils/classnames';
 import helper from '@utils/helper';
 import MetaBar from './MetaBar.vue';
@@ -68,7 +69,7 @@ import type { IComment } from '@/types/api';
 
 export default defineComponent({
   name: 'CommentItem',
-  components: { MetaBar, SubComment },
+  components: { MetaBar, SubComment, VLayout, VBtn, VAvatar, VImg },
   props: {
     prefixCls: {
       type: String,
