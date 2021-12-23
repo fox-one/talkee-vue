@@ -1,5 +1,6 @@
 'use strict';
 
+const fs = require('fs');
 const path = require('path');
 const gulpfile = require('./gulpfile');
 
@@ -56,7 +57,7 @@ module.exports = {
     git: 'git@github.com:fox-one/talkee-vue.git',
 
     // 发布的npm仓库地址 (npm depository url)
-    npm: 'https://registry.npmjs.org/',
+    // npm: 'https://registry.npmjs.org/',
 
     preflight: {
       test: true, // 发布前是否进行单元测试 (whether or not process unit-test)
@@ -86,5 +87,39 @@ module.exports = {
     readme: true
   },
 
-  plugins: []
+  plugins: [
+    {
+      name: 'github-action-npm',
+      stage: 'release',
+      handler: function (config, options) {
+        const filePath = path.resolve(
+          __dirname,
+          './.github/workflows/cicd-npm.yml'
+        );
+        if (!fs.existsSync(filePath))
+          return Promise.resolve();
+        return new Promise(resolve => {
+          const tag = options.tag === 'rc' ? 'latest' : options.tag;
+          fs.readFile(filePath, function (
+            err,
+            data
+          ) {
+            if (err) throw err;
+            const newData = data
+              .toString()
+              .replace(
+                /tag:(\s\S)*\w*('|"){1}/g,
+                `tag: '${tag}'`
+              );
+            fs.writeFileSync(
+              filePath,
+              newData,
+              'utf-8'
+            );
+            resolve();
+          });
+        });
+      }
+    }
+  ]
 };
