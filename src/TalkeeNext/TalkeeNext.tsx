@@ -45,7 +45,7 @@ export default defineComponent({
     },
     commentHeight: {
       type: String,
-      default: null
+      default: '50vh'
     }
   },
   setup(props, context) {

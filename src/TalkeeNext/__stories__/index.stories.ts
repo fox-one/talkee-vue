@@ -29,6 +29,7 @@ storiesOf('TalkeeNext', module)
         loginUrl='https://mixin-oauth.firesbox.com/?client_id=2827d81f-6ae0-4842-b92f-6576afe36863&scope=PROFILE:READ+PHONE:READ&response_type=code'
         :reply="true"
         :favor="true"
+        commentHeight="60vh"
       />`
     }
   });
