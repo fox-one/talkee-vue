@@ -22,7 +22,7 @@
     <section v-if="subcomments.length" :class="classes('comment-sub-wrapper', 'd-flex flex-column align-self-start mt-2')">
       <sub-comment-item
         v-for="(sub, ind) in subcomments"
-        :key="sub.id || ind"
+        :key="`subcomment-${sub.id || ind}`"
         :subcomment="sub"
       />
       <v-btn
@@ -74,6 +74,10 @@ export default defineComponent({
     favor: {
       type: Boolean,
       default: false,
+    },
+    show: {
+      type: Boolean,
+      default: false,
     }
   },
   setup(props) {
@@ -92,8 +96,12 @@ export default defineComponent({
 
     return { classes, content, loading, meta, subcomments, page, hasNext };
   },
-  mounted () {
-    this.loadData();
+  watch: {
+    show() {
+      if (this.show && !this.subcomments.length && this.hasNext) {
+        this.loadData();
+      }
+    }
   },
   methods: {
     async handleSubmit() {

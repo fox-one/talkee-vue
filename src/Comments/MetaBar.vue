@@ -1,6 +1,6 @@
 <template>
   <v-layout :class="classes('meta', 'f-caption')" column align-end>
-    <div v-if="reply" :class="classes('meta-reply')" @click="$emit('click:reply')">
+    <div v-if="reply" :class="classes('meta-reply', isActive ? classes('meta-reply-active') : '')" @click="handleReply">
       {{ reply_text }}
     </div>
     <div v-if="favor" :class="classes('meta-favor', isFavor ? classes('meta-favor-liked') : '')" @click="handleFavor">
@@ -12,7 +12,8 @@
 <script lang="ts">
 import {
   defineComponent,
-  PropType
+  PropType,
+  ref
 } from '@vue/composition-api';
 import classnames from '@utils/classnames';
 import apis from '@apis/index';
@@ -48,15 +49,21 @@ export default defineComponent({
   setup(props) {
     const { prefixCls, comment } = props;
     const classes = classnames(prefixCls);
+    const isActive = ref(false);
 
     return {
       classes,
       reply_text: comment?.reply_count ? `${comment.reply_count} ${$t('reply')}` : $t('click_to_reply'),
       favor_text: comment?.favor_count,
-      isFavor: !!comment?.favor_id
+      isFavor: !!comment?.favor_id,
+      isActive
     };
   },
   methods: {
+    handleReply() {
+      this.isActive = !this.isActive;
+      this.$emit('click:reply');
+    },
     handleFavor() {
       const isLogin = helper.getToken() && helper.getProfile();
       if (!isLogin) {

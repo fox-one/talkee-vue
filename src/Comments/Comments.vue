@@ -17,17 +17,17 @@
         <comment-item
           v-for="(comment, ind) in comments"
           v-bind="$attrs"
-          :key="comment.id || ind"
+          :key="`comment-${comment.id || ind}`"
           :comment="comment"
           :order="order"
           @error="(e) => $emit('error', e)"
         />
+        <f-loading
+          v-if="pullUpLoading"
+          :loading="pullUpLoading"
+          class="mt-4 mb-6"
+        />
       </ul>
-      <f-loading
-        v-if="pullUpLoading"
-        :loading="pullUpLoading"
-        class="pt-2 pb-6"
-      />
     </f-scroll>
   </section>
 
@@ -36,7 +36,6 @@
 <script lang="ts">
 import {
   defineComponent,
-  onMounted,
   PropType,
   ref
 } from '@vue/composition-api';
@@ -70,15 +69,25 @@ export default defineComponent({
   setup(props) {
     const comments = ref([] as IComment[]);
     const classes = classnames(props.prefixCls);
+    const total = ref(0);
     const page = ref(1);
     const hasNext = ref(true);
     const pullDownLoading = ref(false);
     const pullUpLoading = ref(false);
 
-    return { comments, classes, page, hasNext, pullDownLoading, pullUpLoading };
+    return { comments, classes, total, page, hasNext, pullDownLoading, pullUpLoading };
+  },
+  watch: {
+    order: {
+      immediate: false,
+      handler: function () {
+        this.loadData(true);
+      }
+    }
   },
   async mounted() {
-    this.loadData(true);
+    await this.loadData(true);
+    this.$emit('loaded');
   },
   methods: {
     async loadData(reload = false) {
@@ -87,12 +96,13 @@ export default defineComponent({
       try {
         if (reload) {
           this.pullDownLoading = true;
-          this.page = 0;
+          this.page = 1;
         } else {
           this.pullUpLoading = true;
         }
         const res = await apis.getComments(this.order, this.page++);
         this.hasNext = res.comments.length >= res.ipp;
+        this.total = res.total;
         if (reload) {
           this.comments = res.comments;
         } else {

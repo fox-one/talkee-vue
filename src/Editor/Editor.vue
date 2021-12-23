@@ -72,8 +72,9 @@ export default defineComponent({
       } else {
         this.loading = true;
         try {
-          await apis.postComment(this.content);
-          this.$emit('comment', this.content);
+          const res = await apis.postComment(this.content);
+          res.creator = helper.getProfile();
+          this.$emit('comment', res);
           this.content = '';
         } catch (err) {
           this.$emit('error', err);

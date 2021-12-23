@@ -67,7 +67,7 @@ export default defineComponent({
   },
   methods: {
     handleClick(type: string) {
-      this.$emit(`click:${type}`);
+      this.$emit('sort', type);
       this.state = type;
     }
   }

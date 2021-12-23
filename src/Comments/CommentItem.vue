@@ -42,6 +42,7 @@
       :is="subComment"
       v-show="showSubComment"
       class="mt-4"
+      :show="showSubComment"
       :comment="comment"
       :order="order"
       :favor="favor"
