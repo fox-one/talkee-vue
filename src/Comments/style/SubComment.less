@@ -2,6 +2,7 @@
   padding-left: 20%;
 
   &-textarea {
+    position: relative;
     width: 100%;
 
     .v-label {
@@ -15,7 +16,14 @@
     }
 
     .v-text-field__details {
-      display: none;
+      position: absolute;
+      right: 0;
+      bottom: 8px;
+      margin-bottom: 0 !important;
+
+      .v-counter {
+        font-size: 8px !important;
+      }
     }
   }
 

@@ -1214,6 +1214,13 @@
   dependencies:
     "@better-scroll/core" "^2.4.2"
 
+"@better-scroll/nested-scroll@~2.4.2":
+  version "2.4.2"
+  resolved "https://registry.yarnpkg.com/@better-scroll/nested-scroll/-/nested-scroll-2.4.2.tgz#44680f4b02176461250e6be6d95f2ac6169a1c98"
+  integrity sha512-JnC2sqtDqVkj9F5J39u52b6qDsMqXbnURG67dHf97tYoYP2dluwjkvhhxjSFrghREoQzT/KWcDbkfcGy47lQwQ==
+  dependencies:
+    "@better-scroll/core" "^2.4.2"
+
 "@better-scroll/observe-dom@~2.4.2":
   version "2.4.2"
   resolved "https://registry.yarnpkg.com/@better-scroll/observe-dom/-/observe-dom-2.4.2.tgz#cc1e6d82a8f53525c282c9a4bcea5d1be8c21c95"
@@ -1521,13 +1528,14 @@
     vue-property-decorator "^9.0.0"
     vuetify "^2.4.5"
 
-"@foxone/vue-scroll@~0.0.12":
-  version "0.0.12"
-  resolved "https://registry.npmjs.org/@foxone/vue-scroll/-/vue-scroll-0.0.12.tgz#27b82884bd343d20d4f7b78a5de87850c85e3a85"
-  integrity sha512-KvxpkxmMARVUFoi6mQ60ioZsnfq/uuLeXgFpBUsq0xKzpgmq3ABIxR0PCewOlwmAPBnNKED3bLNaHS4/0PZIyA==
+"@foxone/vue-scroll@^0.1.0-0":
+  version "0.1.0-0"
+  resolved "https://registry.yarnpkg.com/@foxone/vue-scroll/-/vue-scroll-0.1.0-0.tgz#c46f1da9ba40c6cf29c97c051f33d7013457488f"
+  integrity sha512-EkVk2TOkRU5bDK5Y0aliGvC0PyEYmwJ3pgs8+hacCzVZeG/rXGYI7VEX+I4sVNwTiBZzuYnh6muZheKeDZOsPw==
   dependencies:
     "@better-scroll/core" "~2.4.2"
     "@better-scroll/mouse-wheel" "~2.4.2"
+    "@better-scroll/nested-scroll" "~2.4.2"
     "@better-scroll/observe-dom" "~2.4.2"
     "@better-scroll/observe-image" "~2.4.2"
     "@better-scroll/pull-down" "~2.4.2"

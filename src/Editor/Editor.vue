@@ -14,6 +14,7 @@
         solo
         height="60"
         :label="meta.label"
+        :counter="maxLength"
         :class="classes('editor-textarea')"
       />
       <v-btn
@@ -56,6 +57,10 @@ export default defineComponent({
     prefixCls: {
       type: String,
       default: 'talkee'
+    },
+    maxLength: {
+      type: [Number, String],
+      default: 512
     }
   },
   setup(props) {
@@ -72,7 +77,7 @@ export default defineComponent({
   },
   methods: {
     async handleSubmit() {
-      if (!this.content) return;
+      if (!this.content || (this.maxLength != 0 && this.content.length > this.maxLength)) return;
       const isLogin = helper.getToken() && helper.getProfile();
       if (!isLogin) {
         const url = helper.buildLoginURL();

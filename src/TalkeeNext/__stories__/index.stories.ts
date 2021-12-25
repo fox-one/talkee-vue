@@ -30,6 +30,7 @@ storiesOf('TalkeeNext', module)
         :reply="true"
         :favor="true"
         commentHeight="60vh"
+        commentLength="800"
       />`
     }
   });

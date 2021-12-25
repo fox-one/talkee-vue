@@ -40,6 +40,7 @@
     </v-layout>
     <components
       :is="subComment"
+      v-bind="$attrs"
       v-show="showSubComment"
       class="mt-4"
       :show="showSubComment"

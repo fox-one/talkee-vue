@@ -17,6 +17,9 @@ VueWrapper {
     "hook:mounted": Array [
       Array [],
     ],
+    "init": Array [
+      Array [],
+    ],
   },
   "_emittedByOrder": Array [
     Object {
@@ -32,6 +35,10 @@ VueWrapper {
     Object {
       "args": Array [],
       "name": "hook:beforeMount",
+    },
+    Object {
+      "args": Array [],
+      "name": "init",
     },
     Object {
       "args": Array [],

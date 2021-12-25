@@ -1,7 +1,8 @@
 import {
   ref,
   defineComponent,
-  onBeforeMount
+  onBeforeMount,
+  onMounted
 } from '@vue/composition-api';
 import classnames from '@utils/classnames';
 import helper from '@utils/helper';
@@ -46,7 +47,11 @@ export default defineComponent({
     commentHeight: {
       type: String,
       default: '50vh'
-    }
+    },
+    commentLength: {
+      type: [Number, String],
+      default: 512
+    },
   },
   setup(props, context) {
     const {
@@ -72,6 +77,10 @@ export default defineComponent({
         api_base: apiBase,
         login_url: loginUrl
       });
+    });
+
+    onMounted(() => {
+      context.emit('init')
     });
 
     return {
@@ -121,6 +130,7 @@ export default defineComponent({
             vOn:error={this.handleError}
             vOn:comment={this.handleComment}
             prefixCls={prefixCls}
+            maxLength={this.commentLength}
             {...{ attrs: this.$attrs }}
           /> : <LoginBtn
             vOn:error={this.handleError}
@@ -135,6 +145,7 @@ export default defineComponent({
           }}
           order={this.order}
           height={this.commentHeight}
+          maxLength={this.commentLength}
           class="pt-4"
           prefixCls={prefixCls}
           ref="comments"
