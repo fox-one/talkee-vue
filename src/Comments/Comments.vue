@@ -5,6 +5,7 @@
       :pulldown="true"
       :pullup="true"
       :height="height"
+      :nested-id="nestedId"
       @pulldown="loadData(true)"
       @pullup="loadData"
     >
@@ -66,6 +67,10 @@ export default defineComponent({
     height: {
       type: String,
       default: scrollWrapperHeight('50vh')
+    },
+    nestedId: {
+      type: [Number, String],
+      default: ''
     }
   },
   setup(props) {

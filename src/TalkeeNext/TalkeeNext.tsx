@@ -52,6 +52,10 @@ export default defineComponent({
       type: [Number, String],
       default: 512
     },
+    nestedId: {
+      type: [Number, String],
+      default: ''
+    }
   },
   setup(props, context) {
     const {
@@ -146,6 +150,7 @@ export default defineComponent({
           order={this.order}
           height={this.commentHeight}
           maxLength={this.commentLength}
+          nestedId={this.nestedId}
           class="pt-4"
           prefixCls={prefixCls}
           ref="comments"
