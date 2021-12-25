@@ -120,7 +120,6 @@ export default defineComponent({
   },
   render(h: CreateElement): VNode {
     const { prefixCls } = this.$props;
-    const LoginBtnSlot = this.$slots.loginBtn?.[0];
 
     return (
       <div class={this.classes('', 'd-flex flex-column')}>
@@ -142,10 +141,7 @@ export default defineComponent({
             vOn:error={this.handleError}
             prefixCls={prefixCls}
             {...{ attrs: this.$attrs }}
-            scopedSlots={{
-              button: () => LoginBtnSlot ? <div> { LoginBtnSlot } </div> : null
-            }}
-            />}
+          />}
         </div>
         <Comments
           vOn:error={this.handleError}

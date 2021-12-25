@@ -1,13 +1,11 @@
 <template>
   <div :class="classes('login-btn')" @click="handleLogin">
-    <slot name="button">
-      <v-btn
-        :class="classes('login-btn-inner')"
-        color="primary"
-      >
-        {{ btnTxt }}
-      </v-btn>
-    </slot>
+    <v-btn
+      :class="classes('login-btn-inner')"
+      color="primary"
+    >
+      {{ btnTxt }}
+    </v-btn>
   </div>
 </template>
 
@@ -35,7 +33,7 @@ export default defineComponent({
   },
   setup(props) {
     const classes = classnames(props.prefixCls);
-    const btnTxt = $t('expand_button');
+    const btnTxt = $t('tap_to_login');
 
     return { classes, btnTxt };
   },

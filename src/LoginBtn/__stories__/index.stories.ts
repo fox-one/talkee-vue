@@ -22,12 +22,4 @@ storiesOf('LoginBtn', module)
       LoginBtn
     },
     template: `<login-btn />`
-  }))
-  .add('custom slot', () => ({
-    components: {
-      LoginBtn
-    },
-    template: `<login-btn>
-      <template v-slot:button><button :style="{ background: 'green' }"> 自定义按钮 </button></template>
-    </login-btn>`
   }));
