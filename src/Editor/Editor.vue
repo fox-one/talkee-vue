@@ -90,7 +90,12 @@ export default defineComponent({
           this.$emit('comment', res);
           this.content = '';
         } catch (err) {
-          this.$emit('error', err);
+          const e = err as any;
+          if (e?.response?.status === 429) {
+            this.$emit('error', e);
+            return;
+          }
+          helper.removeAuth();
         }
         this.loading = false;
       }

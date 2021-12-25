@@ -1,25 +1,28 @@
 <template>
   <v-layout :class="classes('comment-sub')" column align-end>
-    <v-textarea
-      v-model="content"
-      solo
-      height="60"
-      :label="meta.label"
-      :counter="maxLength"
-      :class="classes('comment-sub-textarea')"
-    />
-    <v-btn
-      text
-      small
-      plain
-      :ripple="false"
-      color="primary"
-      :class="classes('comment-sub-btn', 'align-self-start')"
-      :loading="loading"
-      @click="handleSubmit"
-    >
-      {{ meta.submit }}
-    </v-btn>
+    <template v-if="isLogin">
+      <v-textarea
+        v-model="content"
+        solo
+        height="60"
+        :label="meta.label"
+        :counter="maxLength"
+        :class="classes('comment-sub-textarea')"
+      />
+      <v-btn
+        text
+        small
+        plain
+        :ripple="false"
+        color="primary"
+        :class="classes('comment-sub-btn', 'align-self-start')"
+        :loading="loading"
+        @click="handleSubmit"
+      >
+        {{ meta.submit }}
+      </v-btn>
+    </template>
+    <login-btn v-else :prefix-cls="prefixCls" class="align-self-start" />
     <section v-if="subcomments.length" :class="classes('comment-sub-wrapper', 'd-flex flex-column align-self-start mt-2')">
       <sub-comment-item
         v-for="(sub, ind) in subcomments"
@@ -53,13 +56,14 @@ import classnames from '@utils/classnames';
 import helper from '@utils/helper';
 import apis from '@apis/index';
 import { $t } from '@/i18n';
+import LoginBtn from '../LoginBtn';
 import SubCommentItem from './SubCommentItem.vue';
 
 import type { IComment } from '@/types/api';
 
 export default defineComponent({
   name: 'SubComment',
-  components: { SubCommentItem, VLayout, VBtn, VTextarea },
+  components: { LoginBtn, SubCommentItem, VLayout, VBtn, VTextarea },
   props: {
     prefixCls: {
       type: String,
@@ -86,7 +90,7 @@ export default defineComponent({
       default: 512
     }
   },
-  setup(props, context) {
+  setup(props) {
     const { prefixCls } = props;
     const classes = classnames(prefixCls);
     const content = ref('');
@@ -94,13 +98,14 @@ export default defineComponent({
     const page = ref(1);
     const hasNext = ref(true);
     const subcomments = ref([] as any[]);
+    const isLogin = helper.getToken() && helper.getProfile();
     const meta = {
       label: $t('sub_comment_placeholder'),
       submit: $t('submit'),
       loadMore: $t('load_more')
     };
 
-    return { classes, content, loading, meta, subcomments, page, hasNext };
+    return { classes, content, loading, meta, subcomments, page, hasNext, isLogin };
   },
   watch: {
     show() {
@@ -127,8 +132,13 @@ export default defineComponent({
           res.creator = helper.getProfile();
           this.subcomments.push(res);
           this.content = '';
-        } catch (e) {
-          this.$emit('error', e);
+        } catch (err) {
+          const e = err as any;
+          if (e?.response?.status === 429) {
+            this.$emit('error', e);
+            return;
+          }
+          helper.removeAuth();
         }
         this.loading = false;
       }
