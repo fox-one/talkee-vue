@@ -85,12 +85,17 @@ export default defineComponent({
       });
       const query: any = helper.getUrlQuery();
       if (!isLogin.value && query.code) {
-        const auth = await apis.auth(query.code);
-        helper.setAuth(auth);
-        const me = await apis.getMe();
-        helper.setProfile(me);
-        isLogin.value = true;
-        context.emit('logged');
+        try {
+          const auth = await apis.auth(query.code);
+          helper.setAuth(auth);
+          const me = await apis.getMe();
+          helper.setProfile(me);
+          isLogin.value = true;
+          context.emit('login:success');
+        } catch (err) {
+          context.emit('login:fail', err);
+          context.emit('error', err);
+        }
       }
     });
 
