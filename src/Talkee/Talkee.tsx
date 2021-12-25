@@ -69,7 +69,7 @@ export default defineComponent({
     const classes = classnames(prefixCls);
     const total = ref(0);
     const order = ref('favor_count');
-    let isLogin = helper.getToken() && helper.getProfile();
+    const isLogin = ref(!!(helper.getToken() && helper.getProfile()));
 
     onBeforeMount(async () => {
       if (siteId == null || slug == null || apiBase == null || loginUrl == null) {
@@ -84,17 +84,18 @@ export default defineComponent({
         login_url: loginUrl
       });
       const query: any = helper.getUrlQuery();
-      if (!isLogin && query.code) {
+      if (!isLogin.value && query.code) {
         const auth = await apis.auth(query.code);
         helper.setAuth(auth);
         const me = await apis.getMe();
         helper.setProfile(me);
-        isLogin = true;
+        isLogin.value = true;
+        context.emit('logged');
       }
     });
 
     onMounted(() => {
-      context.emit('init', { ...props, isLogin })
+      context.emit('init', { ...props, isLogin: isLogin.value });
     });
 
     return {
@@ -144,6 +145,7 @@ export default defineComponent({
             vOn:error={this.handleError}
             vOn:comment={this.handleComment}
             prefixCls={prefixCls}
+            isLogin={this.isLogin}
             maxLength={this.commentLength}
             {...{ attrs: this.$attrs }}
           /> : <LoginBtn
@@ -161,6 +163,7 @@ export default defineComponent({
           height={this.commentHeight}
           maxLength={this.commentLength}
           nestedId={this.nestedId}
+          isLogin={this.isLogin}
           class="pt-4"
           prefixCls={prefixCls}
           ref="comments"

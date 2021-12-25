@@ -88,6 +88,10 @@ export default defineComponent({
     maxLength: {
       type: [Number, String],
       default: 512
+    },
+    isLogin: {
+      type: Boolean,
+      default: !!(helper.getToken() && helper.getProfile())
     }
   },
   setup(props) {
@@ -98,14 +102,13 @@ export default defineComponent({
     const page = ref(1);
     const hasNext = ref(true);
     const subcomments = ref([] as any[]);
-    const isLogin = helper.getToken() && helper.getProfile();
     const meta = {
       label: $t('sub_comment_placeholder'),
       submit: $t('submit'),
       loadMore: $t('load_more')
     };
 
-    return { classes, content, loading, meta, subcomments, page, hasNext, isLogin };
+    return { classes, content, loading, meta, subcomments, page, hasNext };
   },
   watch: {
     show() {
@@ -117,8 +120,7 @@ export default defineComponent({
   methods: {
     async handleSubmit() {
       if (!this.content || (this.maxLength != 0 && this.content.length > this.maxLength)) return;
-      const isLogin = helper.getToken() && helper.getProfile();
-      if (!isLogin) {
+      if (!this.isLogin) {
         const url = helper.buildLoginURL();
         url && location.assign(url);
       } else {

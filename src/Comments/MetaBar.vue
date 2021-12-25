@@ -46,6 +46,10 @@ export default defineComponent({
     type: {
       type: String,
       default: 'comment'
+    },
+    isLogin: {
+      type: Boolean,
+      default: !!(helper.getToken() && helper.getProfile())
     }
   },
   setup(props) {
@@ -67,8 +71,7 @@ export default defineComponent({
       this.$emit('click:reply');
     },
     handleFavor() {
-      const isLogin = helper.getToken() && helper.getProfile();
-      if (!isLogin) {
+      if (!this.isLogin) {
         const url = helper.buildLoginURL();
         url && location.assign(url);
       } else {

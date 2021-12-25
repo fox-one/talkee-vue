@@ -61,6 +61,10 @@ export default defineComponent({
     maxLength: {
       type: [Number, String],
       default: 512
+    },
+    isLogin: {
+      type: Boolean,
+      default: !!(helper.getToken() && helper.getProfile())
     }
   },
   setup(props) {
@@ -78,8 +82,7 @@ export default defineComponent({
   methods: {
     async handleSubmit() {
       if (!this.content || (this.maxLength != 0 && this.content.length > this.maxLength)) return;
-      const isLogin = helper.getToken() && helper.getProfile();
-      if (!isLogin) {
+      if (!this.isLogin) {
         const url = helper.buildLoginURL();
         url && location.assign(url);
       } else {

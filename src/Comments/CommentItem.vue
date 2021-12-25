@@ -30,9 +30,9 @@
         </div>
       </v-layout>
       <meta-bar
+        v-bind="$attrs"
         :comment="comment"
         :reply="reply"
-        :favor="favor"
         :class="classes('comment-item-right-meta', 'flex-grow-0 ml-auto')"
         @click:reply="handleReply"
         @error="(e) => $emit('error', e)"
@@ -46,7 +46,6 @@
       :show="showSubComment"
       :comment="comment"
       :order="order"
-      :favor="favor"
       @error="(e) => $emit('error', e)"
     />
   </li>
@@ -85,10 +84,6 @@ export default defineComponent({
       default: 'favor_count'
     },
     reply: {
-      type: Boolean,
-      default: false,
-    },
-    favor: {
       type: Boolean,
       default: false,
     }
