@@ -1,10 +1,9 @@
 <template>
-  <div :class="classes('login-btn')">
-    <slot name="default">
+  <div :class="classes('login-btn')" @click="handleLogin">
+    <slot name="button">
       <v-btn
         :class="classes('login-btn-inner')"
         color="primary"
-        @click="handleLogin"
       >
         {{ btnTxt }}
       </v-btn>
