@@ -111,6 +111,9 @@ export default defineComponent({
     };
   },
   methods: {
+    handleKeyboard(state: 'rise' | 'fold') {
+      this.$emit('keyboard', state);
+    },
     handleError(e) {
       logger.error(e);
       this.$emit('error', e);
@@ -147,6 +150,7 @@ export default defineComponent({
         />
         <div class={this.classes('middle', 'mt-6 text-center')}>
           { this.isLogin ? <Editor
+            vOn:keyboard={this.handleKeyboard}
             vOn:error={this.handleError}
             vOn:comment={this.handleComment}
             prefixCls={prefixCls}
@@ -160,6 +164,7 @@ export default defineComponent({
           />}
         </div>
         <Comments
+          vOn:keyboard={this.handleKeyboard}
           vOn:error={this.handleError}
           vOn:loaded={() => {
             this.total = (this.$refs.comments as any)?.total;

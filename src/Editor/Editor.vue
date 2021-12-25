@@ -16,6 +16,8 @@
         :label="meta.label"
         :counter="maxLength"
         :class="classes('editor-textarea')"
+        @focus="$emit('keyboard', 'rise')"
+        @blur="$emit('keyboard', 'fold')"
       />
       <v-btn
         text

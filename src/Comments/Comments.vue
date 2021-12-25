@@ -4,7 +4,7 @@
       :data="comments"
       :pulldown="true"
       :pullup="true"
-      :height="height"
+      :max-height="height"
       :nested-id="nestedId"
       @pulldown="loadData(true)"
       @pullup="loadData"
@@ -21,6 +21,8 @@
           :key="`comment-${comment.id || ind}`"
           :comment="comment"
           :order="order"
+          @keyboard:rise="$emit('keyboard:rise')"
+          @keyboard:fold="$emit('keyboard:fold')"
           @error="(e) => $emit('error', e)"
         />
         <f-loading
