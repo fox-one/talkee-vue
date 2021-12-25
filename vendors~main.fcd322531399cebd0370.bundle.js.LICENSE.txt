@@ -35,6 +35,24 @@ object-assign
  */
 
 /*!
+ * better-scroll / nested-scroll
+ * (c) 2016-2021 ustbhuangyi
+ * Released under the MIT License.
+ */
+
+/*!
+ * better-scroll / observe-dom
+ * (c) 2016-2021 ustbhuangyi
+ * Released under the MIT License.
+ */
+
+/*!
+ * better-scroll / observe-image
+ * (c) 2016-2021 ustbhuangyi
+ * Released under the MIT License.
+ */
+
+/*!
  * better-scroll / slide
  * (c) 2016-2021 ustbhuangyi
  * Released under the MIT License.
