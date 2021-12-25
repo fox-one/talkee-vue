@@ -7,6 +7,7 @@ import {
 import classnames from '@utils/classnames';
 import helper from '@utils/helper';
 import { logger } from '@utils/logger';
+import apis from '@apis/index';
 import Comments from '../Comments';
 import Editor from '../Editor';
 import SortBar from '../SortBar';
@@ -68,9 +69,9 @@ export default defineComponent({
     const classes = classnames(prefixCls);
     const total = ref(0);
     const order = ref('favor_count');
-    const isLogin = helper.getToken() && helper.getProfile();
+    let isLogin = helper.getToken() && helper.getProfile();
 
-    onBeforeMount(() => {
+    onBeforeMount(async () => {
       if (siteId == null || slug == null || apiBase == null || loginUrl == null) {
         context.emit('error', 'missing params!');
         logger.error('missing params!');
@@ -82,6 +83,14 @@ export default defineComponent({
         api_base: apiBase,
         login_url: loginUrl
       });
+      const query: any = helper.getUrlQuery();
+      if (!isLogin && query.code) {
+        const auth = await apis.auth(query.code);
+        helper.setAuth(auth);
+        const me = await apis.getMe();
+        helper.setProfile(me);
+        isLogin = true;
+      }
     });
 
     onMounted(() => {

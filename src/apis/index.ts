@@ -35,9 +35,6 @@ const request = async function (opts): Promise<any> {
       reject(e);
     });
   }
-  if (resp?.data?.token) {
-    utils.setAuth(resp.data);
-  }
   return new Promise(function (resolve, reject) {
     if (resp.data) {
       return resolve(resp.data);
