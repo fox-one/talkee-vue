@@ -142,16 +142,10 @@ export default defineComponent({
             vOn:error={this.handleError}
             prefixCls={prefixCls}
             {...{ attrs: this.$attrs }}
-          >
-              {
-                LoginBtnSlot
-                  ? <div slot="button">
-                    { LoginBtnSlot }
-                  </div>
-                  : ""
-              }
-            </LoginBtn>
-          }
+            scopedSlots={{
+              button: () => LoginBtnSlot ? <div> { LoginBtnSlot } </div> : null
+            }}
+            />}
         </div>
         <Comments
           vOn:error={this.handleError}
