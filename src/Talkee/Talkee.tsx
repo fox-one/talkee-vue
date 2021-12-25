@@ -120,6 +120,7 @@ export default defineComponent({
   },
   render(h: CreateElement): VNode {
     const { prefixCls } = this.$props;
+    const LoginBtnSlot = this.$slots.loginBtn?.[0];
 
     return (
       <div class={this.classes('', 'd-flex flex-column')}>
@@ -130,7 +131,7 @@ export default defineComponent({
           total={this.total}
           {...{ attrs: this.$attrs }}
         />
-        <div lass={this.classes('middle', 'mt-6 text-center')}>
+        <div class={this.classes('middle', 'mt-6 text-center')}>
           { this.isLogin ? <Editor
             vOn:error={this.handleError}
             vOn:comment={this.handleComment}
@@ -141,7 +142,16 @@ export default defineComponent({
             vOn:error={this.handleError}
             prefixCls={prefixCls}
             {...{ attrs: this.$attrs }}
-          />}
+          >
+              {
+                LoginBtnSlot
+                  ? <div slot="default">
+                    { LoginBtnSlot }
+                  </div>
+                  : null
+              }
+            </LoginBtn>
+          }
         </div>
         <Comments
           vOn:error={this.handleError}

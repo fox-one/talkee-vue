@@ -1,5 +1,5 @@
 <template>
-  <section :class="classes('comments')">
+  <section v-if="comments.length" :class="classes('comments')">
     <f-scroll
       :data="comments"
       :pulldown="true"
