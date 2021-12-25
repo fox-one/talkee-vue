@@ -4,9 +4,7 @@
     color="primary"
     @click="handleLogin"
   >
-    <slot name="default">
-      <span :class="classes('login-btn-inner')">{{ btnTxt }}</span>
-    </slot>
+    <span :class="classes('login-btn-inner')">{{ btnTxt }}</span>
   </v-btn>
 </template>
 

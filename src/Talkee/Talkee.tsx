@@ -130,7 +130,7 @@ export default defineComponent({
           total={this.total}
           {...{ attrs: this.$attrs }}
         />
-        <div class="mt-6 text-center">
+        <div lass={this.classes('middle', 'mt-6 text-center')}>
           { this.isLogin ? <Editor
             vOn:error={this.handleError}
             vOn:comment={this.handleComment}
