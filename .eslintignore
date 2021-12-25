@@ -10,7 +10,7 @@ node_modules/
 .out/
 **/__test__/
 **/__stories__/
-src/TalkeeNext/
+src/Talkee/
 
 gulpfile.js
 .eslintrc.js

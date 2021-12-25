@@ -16,7 +16,7 @@ import type { CreateElement, VNode } from 'vue';
 import type { IComment } from '@/types/api';
 
 export default defineComponent({
-  name: 'TalkeeNext',
+  name: 'Talkee',
   components: {
     Comments,
     Editor,

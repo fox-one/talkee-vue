@@ -1,7 +1,7 @@
 import { storiesOf } from '@storybook/vue';
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
 import { themes } from '@storybook/theming';
-import { Talkee } from '../';
+import Talkee from '..';
 import '../style';
 
 storiesOf('Talkee', module)
@@ -17,64 +17,21 @@ storiesOf('Talkee', module)
       defaultViewport: 'iphone6'
     }
   })
-  .add('Basic', () => {
-    const redirect_url = encodeURIComponent(window.location.href + '&');
+  .add('basic usage', () => {
     return {
       components: {
         Talkee
       },
       template: `<talkee
-      :siteId="6"
-      :slug="1234"
-      apiBase="https://talkee-test-api.firesbox.com/api"
-      loginUrl="https://mixin-oauth.firesbox.com/?client_id=65fdd5af-5d3f-496a-9d62-b5cdb4d8396f&scope=PROFILE:READ+PHONE:READ&response_type=code&redirect_url=${redirect_url}"
-    />`
+        siteId='1'
+        slug='7000103413-course-728'
+        apiBase='https://talkee-test-api.firesbox.com/api'
+        loginUrl='https://mixin-oauth.firesbox.com/?client_id=2827d81f-6ae0-4842-b92f-6576afe36863&scope=PROFILE:READ+PHONE:READ&response_type=code'
+        :reply="true"
+        :favor="true"
+        commentHeight="60vh"
+        commentLength="800"
+        class="pa-4"
+      />`
     }
-  })
-  .add('Without Reply', () => {
-    const redirect_url = encodeURIComponent(window.location.href + '&');
-    return {
-      components: {
-        Talkee
-      },
-      template: `<talkee
-      :siteId="6"
-      :slug="1234"
-      apiBase="https://talkee-test-api.firesbox.com/api"
-      loginUrl="https://mixin-oauth.firesbox.com/?client_id=65fdd5af-5d3f-496a-9d62-b5cdb4d8396f&scope=PROFILE:READ+PHONE:READ&response_type=code&redirect_url=${redirect_url}"
-      :renderOpts="{
-        reply: false
-      }"
-    />`
-    }
-  })
-  .add('With [talkee-group] Theme', () => {
-    const redirect_url = encodeURIComponent(window.location.href + '&');
-    return {
-      components: {
-        Talkee
-      },
-      template: `<talkee
-      :siteId="6"
-      :slug="1234"
-      prefixCls="talkee-group"
-      apiBase="https://talkee-test-api.firesbox.com/api"
-      loginUrl="https://mixin-oauth.firesbox.com/?client_id=65fdd5af-5d3f-496a-9d62-b5cdb4d8396f&scope=PROFILE:READ+PHONE:READ&response_type=code&redirect_url=${redirect_url}"
-      :renderOpts="{
-        reply: false,
-        tweet: false,
-      }"
-    />`
-    }
-  })
-  .add('With Japan Env', () => ({
-    components: {
-      Talkee
-    },
-    template: `<talkee
-      :siteId="4"
-      :slug="234455"
-      apiBase="https://links-login.chrove.com/api"
-      loginUrl="https://oauth.chrove.com/?client_id=bf07d6d6-4d15-46ab-b5e4-6e66fac1151ef&scope=PROFILE:READ+PHONE:READ"
-    />`
-  }));
+  });
