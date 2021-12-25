@@ -68,6 +68,7 @@ export default defineComponent({
     const classes = classnames(prefixCls);
     const total = ref(0);
     const order = ref('favor_count');
+    const isLogin = helper.getToken() && helper.getProfile();
 
     onBeforeMount(() => {
       if (siteId == null || slug == null || apiBase == null || loginUrl == null) {
@@ -84,14 +85,14 @@ export default defineComponent({
     });
 
     onMounted(() => {
-      context.emit('init')
+      context.emit('init', { ...props, isLogin })
     });
 
     return {
       classes,
       total,
       order,
-      isLogin: helper.getToken() && helper.getProfile()
+      isLogin
     };
   },
   methods: {

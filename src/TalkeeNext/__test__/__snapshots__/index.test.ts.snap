@@ -18,7 +18,19 @@ VueWrapper {
       Array [],
     ],
     "init": Array [
-      Array [],
+      Array [
+        Object {
+          "apiBase": null,
+          "commentHeight": "50vh",
+          "commentLength": 512,
+          "isLogin": undefined,
+          "loginUrl": null,
+          "nestedId": "",
+          "prefixCls": "talkee",
+          "siteId": null,
+          "slug": null,
+        },
+      ],
     ],
   },
   "_emittedByOrder": Array [
@@ -37,7 +49,19 @@ VueWrapper {
       "name": "hook:beforeMount",
     },
     Object {
-      "args": Array [],
+      "args": Array [
+        Object {
+          "apiBase": null,
+          "commentHeight": "50vh",
+          "commentLength": 512,
+          "isLogin": undefined,
+          "loginUrl": null,
+          "nestedId": "",
+          "prefixCls": "talkee",
+          "siteId": null,
+          "slug": null,
+        },
+      ],
       "name": "init",
     },
     Object {
