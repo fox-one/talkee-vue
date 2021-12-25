@@ -132,7 +132,7 @@ export default defineComponent({
           {...{ attrs: this.$attrs }}
         />
         <div class={this.classes('middle', 'mt-6 text-center')}>
-          { !this.isLogin ? <Editor
+          { this.isLogin ? <Editor
             vOn:error={this.handleError}
             vOn:comment={this.handleComment}
             prefixCls={prefixCls}
