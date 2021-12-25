@@ -21,8 +21,7 @@
           :key="`comment-${comment.id || ind}`"
           :comment="comment"
           :order="order"
-          @keyboard:rise="$emit('keyboard:rise')"
-          @keyboard:fold="$emit('keyboard:fold')"
+          @keyboard="(state) => $emit('keyboard', state)"
           @error="(e) => $emit('error', e)"
         />
         <f-loading

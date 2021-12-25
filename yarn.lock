@@ -1528,10 +1528,10 @@
     vue-property-decorator "^9.0.0"
     vuetify "^2.4.5"
 
-"@foxone/vue-scroll@^0.1.1":
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/@foxone/vue-scroll/-/vue-scroll-0.1.1.tgz#5bcb2bc6b538642bb5cf414c254f945e983830ab"
-  integrity sha512-2c3aduXi3PVWs2o41+JhWlFCcndFG10m2JCX6GnOgM7/dqDHY1YhJAfcJhufhypxvhXiHGrJzW4c295GfQzFtg==
+"@foxone/vue-scroll@^0.1.2":
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/@foxone/vue-scroll/-/vue-scroll-0.1.2.tgz#01298d4f3c240a349776197c15e049d38558d551"
+  integrity sha512-hdG6uFcv6QIG/sc0a2AyFkqnkUbu7Cnk1faQknkMHAgY+cZ94OhUFa+Z3vE4gMrb+t9mLN6b1Y+0y01VsMvSpw==
   dependencies:
     "@better-scroll/core" "~2.4.2"
     "@better-scroll/mouse-wheel" "~2.4.2"

@@ -1,6 +1,6 @@
 {
   "name": "@foxone/talkee-vue",
-  "version": "0.2.0-rc.3",
+  "version": "0.2.0-rc.4",
   "description": "",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -37,7 +37,7 @@
   },
   "license": "ISC",
   "dependencies": {
-    "@foxone/vue-scroll": "^0.1.1",
+    "@foxone/vue-scroll": "^0.1.2",
     "@links-japan/talkee": "^0.2.6",
     "axios": "~0.24.0",
     "classnames": "~2.2.6",
