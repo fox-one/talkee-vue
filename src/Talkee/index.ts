@@ -1,13 +1,13 @@
-import TalkeeNext from './Talkee';
+import Talkee from './Talkee';
 import type { defineComponent } from '@vue/composition-api';
 import type { VueConstructor } from 'vue';
 
-export type TalkeeNext = ReturnType<typeof defineComponent> & {
+export type Talkee = ReturnType<typeof defineComponent> & {
   install(app: VueConstructor<Vue>): void
 }
 
-(TalkeeNext as TalkeeNext).install = (app: VueConstructor<Vue>): void => {
-  app.component(TalkeeNext.name, TalkeeNext);
+(Talkee as Talkee).install = (app: VueConstructor<Vue>): void => {
+  app.component(Talkee.name, Talkee);
 };
 
-export default TalkeeNext;
+export default Talkee;

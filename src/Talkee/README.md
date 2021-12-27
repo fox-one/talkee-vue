@@ -1,11 +1,11 @@
-# TalkeeNext
+# Talkee
 
 ## APIs
 
 ### Props
 | Name | Description | Type | Default |
 | --- | --- | --- | --- |
-| prefixCls(optional) | The classname prefix for wholly control the component style | string | `'talkeenext'` | 
+| prefixCls(optional) | The classname prefix for wholly control the component style | string | `'talkee'` | 
 
 ### Slots
 | Name | Description |
@@ -16,18 +16,18 @@
 
 ```vue
 <template>
-  <TalkeeNext>
-    {{ 'Hello TalkeeNext' }}
-  </TalkeeNext>
+  <Talkee>
+    {{ 'Hello Talkee' }}
+  </Talkee>
 </template>
 
 <script lang="ts">
   import { Component, Vue } from 'vue-property-decorator';
-  import { TalkeeNext } from './TalkeeNext';
+  import { Talkee } from './Talkee';
 
   @Component(
     components: {
-      TalkeeNext
+      Talkee
     }
   )
   export class App extends Vue {

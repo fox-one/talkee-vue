@@ -1,13 +1,13 @@
 import Vue from 'vue';
 import VueCompositionAPI from '@vue/composition-api';
 import { shallowMount, mount } from '@vue/test-utils';
-import TalkeeNext from '../';
+import Talkee from '../';
 
 Vue.use(VueCompositionAPI);
 
-describe('TalkeeNext', () => {
+describe('Talkee', () => {
   it('renders correctly', () => {
-    const wrapper = shallowMount(TalkeeNext);
+    const wrapper = shallowMount(Talkee);
     expect(wrapper).toMatchSnapshot();
   });
 });
