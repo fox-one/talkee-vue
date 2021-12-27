@@ -83,18 +83,22 @@ export default defineComponent({
         api_base: apiBase,
         login_url: loginUrl
       });
-      const query: any = helper.getUrlQuery();
-      if (!isLogin.value && query.code) {
-        try {
-          const auth = await apis.auth(query.code);
-          helper.setAuth(auth);
-          const me = await apis.getMe();
-          helper.setProfile(me);
-          isLogin.value = true;
-          context.emit('login:success');
-        } catch (err) {
-          context.emit('login:fail', err);
-          context.emit('error', err);
+      if (!isLogin.value) {
+        const query: any = helper.getUrlQuery();
+        if (query.code) {
+          try {
+            const auth = await apis.auth(query.code);
+            helper.setAuth(auth);
+            const me = await apis.getMe();
+            helper.setProfile(me);
+            isLogin.value = true;
+            context.emit('login:success');
+          } catch (err) {
+            context.emit('login:fail', err);
+            context.emit('error', err);
+          }
+        } else {
+          helper.setRedirect();
         }
       }
     });
