@@ -3,6 +3,7 @@
     <v-btn
       :class="classes('login-btn-inner')"
       color="primary"
+      depressed
     >
       {{ btnTxt }}
     </v-btn>

@@ -125,6 +125,7 @@ export default defineComponent({
     handleComment(comment: IComment) {
       (this.$refs.comments as any)?.comments?.unshift?.(comment);
       this.total++;
+      this.$emit('comment', comment);
     },
     handleOrderChange(type: string) {
       switch(type) {

@@ -4,6 +4,7 @@
       <v-textarea
         v-model="content"
         solo
+        flat
         height="60"
         :label="meta.label"
         :counter="maxLength"

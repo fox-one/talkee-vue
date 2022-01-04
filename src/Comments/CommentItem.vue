@@ -46,6 +46,7 @@
       :show="showSubComment"
       :comment="comment"
       :order="order"
+      @comment:sub="(c) => $emit('comment:sub', c)"
       @keyboard="(state) => $emit('keyboard', state)"
       @error="(e) => $emit('error', e)"
     />
