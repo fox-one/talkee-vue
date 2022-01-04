@@ -3,10 +3,10 @@
     <template v-if="isLogin">
       <v-textarea
         v-model="content"
-        solo
+        filled
         flat
         height="60"
-        :label="meta.label"
+        :placeholder="meta.label"
         :counter="maxLength"
         :class="classes('comment-sub-textarea')"
         @focus="$emit('keyboard', 'rise')"

@@ -11,10 +11,10 @@
     <v-layout column align-end :class="classes('editor-right')">
       <v-textarea
         v-model="content"
-        solo
+        outlined
         flat
         height="60"
-        :label="meta.label"
+        :placeholder="meta.label"
         :counter="maxLength"
         :class="classes('editor-textarea')"
         @focus="$emit('keyboard', 'rise')"
