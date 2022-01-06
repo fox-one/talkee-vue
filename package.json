@@ -1,6 +1,6 @@
 {
   "name": "@foxone/talkee-vue",
-  "version": "0.2.0-rc.10",
+  "version": "0.2.0",
   "description": "",
   "main": "lib/index.js",
   "module": "es/index.js",
