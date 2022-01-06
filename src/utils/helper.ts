@@ -3,7 +3,7 @@ import { $t } from '../i18n';
 import storage from './storage';
 import Base64 from './base64';
 
-function setStore (key: string, value: any) {
+function setStore(key: string, value: any) {
   try {
     const store = JSON.parse(storage.get(STORAGE_KEY) ?? '{}');
     store[key] = value;
@@ -13,7 +13,7 @@ function setStore (key: string, value: any) {
   }
 }
 
-function getStore (key: string) {
+function getStore(key: string) {
   try {
     const store = JSON.parse(storage.get(STORAGE_KEY) ?? '{}');
     return store[key];
@@ -22,7 +22,7 @@ function getStore (key: string) {
   }
 }
 
-function removeStore (key: string) {
+function removeStore(key: string) {
   try {
     const store = JSON.parse(storage.get(STORAGE_KEY) ?? '{}');
     delete store[key];
@@ -90,7 +90,7 @@ export const helper = {
     return getStore('profile');
   },
 
-  setAuth: function (data: { token:string; user_id:string }) {
+  setAuth: function (data: { token: string; user_id: string }) {
     setStore('jwt-token', data.token);
     setStore('user-id', data.user_id);
   },
@@ -182,6 +182,32 @@ export const helper = {
     alert($t('error_unknown'));
     return;
   },
+
+  getAndroidVersion() {
+    const ua = navigator.userAgent.toLowerCase();
+    if (ua.indexOf('android') > 0) {
+      const reg = /android [\d._]+/gi;
+      const v_info = ua.match(reg);
+      const version = (v_info + '')
+        .replace(/[^0-9|_.]/gi, '')
+        .replace(/_/gi, '.'); // 得到版本号4.2.2
+      const majorVersion = parseInt(version.split('.')[0]); // 得到版本号第一位
+      return majorVersion;
+    }
+    return 0;
+  },
+
+  isAndroid() {
+    const ua = navigator.userAgent.toLowerCase();
+    return ua.includes('android');
+  },
+
+  notSupportIntersect() {
+    if (this.isAndroid() && this.getAndroidVersion() < 8) {
+      return true;
+    }
+    return !window.IntersectionObserver;
+  }
 };
 
 export default helper;
