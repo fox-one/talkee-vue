@@ -13,13 +13,13 @@
 import {
   defineComponent,
   PropType,
-  ref
+  ref,
+  watch
 } from '@vue/composition-api';
 import { VLayout } from 'vuetify/lib';
 import classnames from '@utils/classnames';
 import apis from '@apis/index';
 import helper from '@utils/helper';
-import { $t } from '@/i18n';
 
 import type { IComment } from '@/types/api';
 
@@ -56,12 +56,21 @@ export default defineComponent({
     const { prefixCls, comment } = props;
     const classes = classnames(prefixCls);
     const isActive = ref(false);
+    const reply_text = ref(comment?.reply_count || '');
+    const favor_text = ref(comment?.favor_count);
+    const isFavor = ref(!!comment?.favor_id);
+
+    watch(comment, () => {
+      reply_text.value = comment?.reply_count || '';
+      favor_text.value = comment?.favor_count;
+      isFavor.value = !!comment?.favor_id;
+    });
 
     return {
       classes,
-      reply_text: comment?.reply_count ? `${comment.reply_count} ${$t('reply')}` : $t('click_to_reply'),
-      favor_text: comment?.favor_count,
-      isFavor: !!comment?.favor_id,
+      reply_text,
+      favor_text,
+      isFavor,
       isActive
     };
   },

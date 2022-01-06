@@ -31,7 +31,7 @@
       </v-layout>
       <meta-bar
         v-bind="$attrs"
-        :comment="comment"
+        :comment="commentData"
         :reply="reply"
         :class="classes('comment-item-right-meta', 'flex-grow-0 ml-auto')"
         @click:reply="handleReply"
@@ -44,9 +44,9 @@
       v-show="showSubComment"
       class="mt-4"
       :show="showSubComment"
-      :comment="comment"
+      :comment="commentData"
       :order="order"
-      @comment:sub="(c) => $emit('comment:sub', c)"
+      @subcomment="handleSubcomment"
       @keyboard="(state) => $emit('keyboard', state)"
       @error="(e) => $emit('error', e)"
     />
@@ -99,6 +99,7 @@ export default defineComponent({
       more: $t('content_more'),
       less: $t('content_less')
     };
+    const commentData = ref(comment);
 
     return {
       classes,
@@ -108,6 +109,7 @@ export default defineComponent({
       content: comment?.content,
       isMore,
       meta,
+      commentData,
       ...proxy
     };
   },
@@ -119,6 +121,10 @@ export default defineComponent({
   methods: {
     handleReply() {
       this.showSubComment = !this.showSubComment;
+    },
+    handleSubcomment(c) {
+      this.$emit('subcomment', c);
+      this.$set(this.commentData, 'reply_count', this.commentData.reply_count + 1);
     }
   }
 });

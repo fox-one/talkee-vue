@@ -21,7 +21,7 @@
           :key="`comment-${comment.id || ind}`"
           :comment="comment"
           :order="order"
-          @comment:sub="(c) => $emit('comment:sub', c)"
+          @subcomment="(c) => $emit('subcomment', c)"
           @keyboard="(state) => $emit('keyboard', state)"
           @error="(e) => $emit('error', e)"
         />

@@ -122,10 +122,13 @@ export default defineComponent({
       logger.error(e);
       this.$emit('error', e);
     },
-    handleComment(comment: IComment) {
+    handleComment(comment: string) {
       (this.$refs.comments as any)?.comments?.unshift?.(comment);
       this.total++;
       this.$emit('comment', comment);
+    },
+    handleSubComment(comment: string) {
+      this.$emit('subcomment', comment);
     },
     handleOrderChange(type: string) {
       switch(type) {
@@ -174,6 +177,7 @@ export default defineComponent({
           vOn:loaded={() => {
             this.total = (this.$refs.comments as any)?.total;
           }}
+          vOn:subcomment={this.handleSubComment}
           order={this.order}
           height={this.commentHeight}
           maxLength={this.commentLength}

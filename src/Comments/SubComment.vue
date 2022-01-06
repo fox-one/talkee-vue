@@ -133,7 +133,7 @@ export default defineComponent({
             this.comment.id,
             this.content.trim(),
           );
-          this.$emit('comment:sub', this.content);
+          this.$emit('subcomment', this.content);
           res.creator = helper.getProfile();
           this.subcomments.push(res);
           this.content = '';
