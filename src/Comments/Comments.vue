@@ -1,6 +1,7 @@
 <template>
   <section v-if="comments.length" :class="classes('comments')">
     <f-scroll
+      ref="scroll"
       :data="comments"
       :pulldown="true"
       :pullup="true"
@@ -83,14 +84,21 @@ export default defineComponent({
     const hasNext = ref(true);
     const pullDownLoading = ref(false);
     const pullUpLoading = ref(false);
+    const scroll = ref<any>(null);
 
-    return { comments, classes, total, page, hasNext, pullDownLoading, pullUpLoading };
+    return { comments, classes, total, page, hasNext, pullDownLoading, pullUpLoading, scroll };
   },
   watch: {
     order: {
       immediate: false,
-      handler: function () {
-        this.loadData(true);
+      handler: async function () {
+        await Promise.all([
+          this.loadData(true),
+          Promise.resolve(this.scrollToTop())
+        ]);
+        this.$nextTick(() => {
+          this.scrollRefresh();
+        });
       }
     }
   },
@@ -126,6 +134,12 @@ export default defineComponent({
           this.pullUpLoading = false;
         }
       }
+    },
+    scrollToTop() {
+      return this.scroll?.scrollTo?.(0, 0, 1);
+    },
+    scrollRefresh() {
+      return this.scroll?.refresh();
     }
   }
 });

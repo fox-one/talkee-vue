@@ -123,8 +123,9 @@ export default defineComponent({
       this.$emit('error', e);
     },
     handleComment(comment: string) {
-      (this.$refs.comments as any)?.comments?.unshift?.(comment);
       this.total++;
+      (this.$refs.comments as any)?.comments?.unshift?.(comment);
+      (this.$refs.comments as any)?.scrollToTop?.();
       this.$emit('comment', comment);
     },
     handleSubComment(comment: string) {
