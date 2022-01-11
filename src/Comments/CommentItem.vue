@@ -1,6 +1,6 @@
 <template>
   <li ref="item" v-intersect="{ handler: handleIntersect }" :class="classes('comment-item', 'py-5')">
-    <div v-show="isIntersecting">
+    <div v-show="isIntersecting" ref="itemContent">
       <v-layout justify-space-between align-start>
         <div :class="classes('comment-item-left')">
           <v-avatar
@@ -52,7 +52,6 @@
         @error="(e) => $emit('error', e)"
       />
     </div>
-    
   </li>
 </template>
 
@@ -106,6 +105,7 @@ export default defineComponent({
     const proxy = reactive({ showSubComment: false });
     const isMore = ref(false);
     const isIntersecting = ref(false);
+    const itemContent = ref<HTMLDivElement>(null as any);
     const item = ref<HTMLLIElement>(null as any);
     const meta = {
       more: $t('content_more'),
@@ -121,10 +121,11 @@ export default defineComponent({
 
     onUpdated(() => {
       nextTick(() => {
-        const minHeight = `${item.value?.clientHeight ?? 100}px`;
-        if (minHeight === '0px') return;
-        if (item.value?.style.minHeight !== minHeight) {
-          item.value.style.minHeight = minHeight;
+        const minHeight = item.value?.clientHeight ?? 0;
+        const actuallyHeight = itemContent.value?.clientHeight ?? 0;
+        if (minHeight === 0) return;
+        if ((item.value as any)?.style.minHeight !== (actuallyHeight + 81)) {
+          (item.value as any).style.minHeight = (actuallyHeight + 81);
         }
       });
     });
@@ -138,6 +139,7 @@ export default defineComponent({
       isMore,
       isIntersecting,
       item,
+      itemContent,
       meta,
       commentData,
       ...proxy

@@ -29,7 +29,8 @@
       &::before {
         float: right;
         width: 0;
-        height: calc(100% - 19px);
+        height: 100%;
+        margin-bottom: -19px;
         content: "";
       }
 
@@ -43,7 +44,7 @@
       }
 
       &-more {
-        max-height: 150em;
+        max-height: none;
         -webkit-line-clamp: 9999;
 
         &::after {
