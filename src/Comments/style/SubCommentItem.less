@@ -24,44 +24,43 @@
       background-color: var(--v-greyscale_7-base);
 
       &-txt {
-        overflow: hidden;
+        display: -webkit-box;
         max-height: 4.5em;
         overflow: hidden;
         line-height: 1.5;
-        word-break: break-word;
-        display: -webkit-box;
         text-overflow: ellipsis;
         text-overflow: -o-ellipsis-lastline;
+        word-break: break-word;
+        transition: max-height 0.3s ease-out;
         -webkit-line-clamp: 3;
         -webkit-box-orient: vertical;
-        transition: max-height 0.3s ease-out;
 
         &::after {
-          content: "";
           display: block;
           width: 100%;
           height: 50px;
-          background-color: inherit;
           margin-top: -66px;
+          background-color: inherit;
+          content: "";
         }
 
         &-copy {
           position: absolute;
           top: 0;
           left: 0;
+          z-index: 2;
+          display: -webkit-box;
           width: 100%;
           height: 100%;
-          z-index: 2;
-          background-color: inherit;
-          overflow: hidden;
           max-height: 4.5em;
+          overflow: hidden;
           line-height: 1.5;
-          display: -webkit-box;
           text-overflow: ellipsis;
           text-overflow: -o-ellipsis-lastline;
+          background-color: inherit;
+          transition: max-height 0.3s ease-out;
           -webkit-line-clamp: 3;
           -webkit-box-orient: vertical;
-          transition: max-height 0.3s ease-out;
         }
       }
 
