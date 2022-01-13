@@ -21,19 +21,22 @@
           {{ formatTime(subcomment.created_at) }}
         </span>
       </div>
-      <div class="d-flex">
-        <div :class="`${classes('comment-sub-item-right-content', 'my-4 f-body-2')} ${isMore ? classes('comment-sub-item-right-content-more') : ''}`">
-          <v-btn
-            :class="classes('comment-sub-item-right-more', 'pa-0')"
-            text
-            small
-            color="primary"
-            @click="isMore = !isMore"
-          >
-            {{ isMore ? meta.less : meta.more }}
-          </v-btn>
+      <div :class="`${classes('comment-sub-item-right-content', 'my-4 f-body-2')} ${isMore ? classes('comment-sub-item-right-content-more') : ''}`">
+        <p :class="classes('comment-sub-item-right-content-txt', 'ma-0')">
           {{ subcomment.content }}
-        </div>
+        </p>
+        <p :class="classes('comment-sub-item-right-content-txt-copy', 'ma-0')">
+          {{ subcomment.content }}
+        </p>
+        <v-btn
+          :class="classes('comment-sub-item-right-content-btn', 'pa-0')"
+          text
+          small
+          color="primary"
+          @click="isMore = !isMore"
+        >
+          {{ isMore ? meta.less : meta.more }}
+        </v-btn>
       </div>
     </v-layout>
     <meta-bar

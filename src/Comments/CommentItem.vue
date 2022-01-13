@@ -15,19 +15,22 @@
             <span :class="classes('comment-item-right-top-name', 'f-body-2 text--primary mr-2')">{{ full_name }}</span>
             <span :class="classes('comment-item-right-top-time', 'f-caption f-greyscale-3')">{{ created_at }}</span>
           </div>
-          <div class="d-flex">
-            <div :class="`${classes('comment-item-right-content', 'mt-6 f-body-2')} ${isMore ? classes('comment-item-right-content-more') : ''}`">
-              <v-btn
-                :class="classes('comment-item-right-more', 'pa-0')"
-                text
-                small
-                color="primary"
-                @click="isMore = !isMore"
-              >
-                {{ isMore ? meta.less : meta.more }}
-              </v-btn>
-              {{ content }}
-            </div>
+          <div :class="`${classes('comment-item-right-content', 'mt-6 f-body-2')} ${isMore ? classes('comment-item-right-content-more') : ''}`">
+            <p :class="classes('comment-item-right-content-txt', 'ma-0')">
+              {{content}}
+            </p>
+            <p :class="classes('comment-item-right-content-txt-copy', 'ma-0')">
+              {{content}}
+            </p>
+            <v-btn
+              :class="classes('comment-item-right-content-btn', 'pa-0')"
+              text
+              small
+              color="primary"
+              @click="isMore = !isMore"
+            >
+              {{ isMore ? meta.less : meta.more }}
+            </v-btn>
           </div>
         </v-layout>
         <meta-bar
