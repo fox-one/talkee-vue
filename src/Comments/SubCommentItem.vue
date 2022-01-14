@@ -33,6 +33,7 @@
           text
           small
           color="primary"
+          height="16"
           @click="isMore = !isMore"
         >
           {{ isMore ? meta.less : meta.more }}

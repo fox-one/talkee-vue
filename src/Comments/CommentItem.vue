@@ -27,6 +27,7 @@
               text
               small
               color="primary"
+              height="16"
               @click="isMore = !isMore"
             >
               {{ isMore ? meta.less : meta.more }}
@@ -100,10 +101,14 @@ export default defineComponent({
     reply: {
       type: Boolean,
       default: false,
+    },
+    scrollRefresh: {
+      type: Function,
+      default: () => (function noop() {})
     }
   },
   setup(props, ctx) {
-    const { prefixCls, comment } = props;
+    const { prefixCls, comment, scrollRefresh } = props;
     const classes = classnames(prefixCls);
     const proxy = reactive({ showSubComment: false });
     const isMore = ref(false);
@@ -124,11 +129,11 @@ export default defineComponent({
 
     onUpdated(() => {
       nextTick(() => {
-        const minHeight = item.value?.clientHeight ?? 0;
-        const actuallyHeight = itemContent.value?.clientHeight ?? 0;
-        if (minHeight === 0) return;
-        if ((item.value as any)?.style.minHeight !== (actuallyHeight + 81)) {
-          (item.value as any).style.minHeight = (actuallyHeight + 81);
+        const minHeight = `${(itemContent.value?.clientHeight ?? 0) + 41}px`;
+        if (minHeight === '41px') return;
+        if (item.value?.style.minHeight !== minHeight) {
+          (item.value as any).style.minHeight = minHeight;
+          nextTick(() => scrollRefresh());
         }
       });
     });

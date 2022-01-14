@@ -22,6 +22,7 @@
           :key="`comment-${comment.id || ind}`"
           :comment="comment"
           :order="order"
+          :scroll-refresh="scrollRefresh"
           @subcomment="(c) => $emit('subcomment', c)"
           @keyboard="(state) => $emit('keyboard', state)"
           @error="(e) => $emit('error', e)"
