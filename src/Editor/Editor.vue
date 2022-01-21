@@ -42,6 +42,7 @@ import {
   ref
 } from '@vue/composition-api';
 import { VLayout, VBtn, VTextarea, VAvatar, VImg } from 'vuetify/lib';
+import DOMPurify from 'dompurify';
 import classnames from '@utils/classnames';
 import helper from '@utils/helper';
 import apis from '@apis/index';
@@ -84,24 +85,27 @@ export default defineComponent({
   },
   methods: {
     async handleSubmit() {
-      if (!this.content || (this.maxLength != 0 && this.content.length > this.maxLength)) return;
+      const clean = DOMPurify.sanitize(this.content.trim());
+      if (!this.content || (this.maxLength != 0 && clean.length > this.maxLength)) return;
       if (!this.isLogin) {
         const url = helper.buildLoginURL();
         url && location.assign(url);
       } else {
         this.loading = true;
         try {
-          const res = await apis.postComment(this.content);
+          const res = await apis.postComment(clean);
           res.creator = helper.getProfile();
           this.$emit('comment', res);
           this.content = '';
         } catch (err) {
           const e = err as any;
-          if (e?.response?.status === 429) {
-            this.$emit('error', e);
-          } else {
+          if (e?.response?.status === 401) {
             helper.removeAuth();
+            const { login_url } = helper.getDefaultParams();
+            const url = helper.buildLoginURL(login_url);
+            url && location.assign(url);
           }
+          this.$emit('error', e);
         }
         this.loading = false;
       }

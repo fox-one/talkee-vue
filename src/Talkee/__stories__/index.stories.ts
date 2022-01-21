@@ -30,7 +30,7 @@ storiesOf('Talkee', module)
         :reply="true"
         :favor="true"
         commentHeight="60vh"
-        commentLength="800"
+        commentLength="512"
         class="pa-4"
       />`
     }

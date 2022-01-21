@@ -22,12 +22,8 @@
         </span>
       </div>
       <div :class="`${classes('comment-sub-item-right-content', 'my-4 f-body-2')} ${isMore ? classes('comment-sub-item-right-content-more') : ''}`">
-        <p :class="classes('comment-sub-item-right-content-txt', 'ma-0')">
-          {{ subcomment.content }}
-        </p>
-        <p :class="classes('comment-sub-item-right-content-txt-copy', 'ma-0')">
-          {{ subcomment.content }}
-        </p>
+        <p :class="classes('comment-sub-item-right-content-txt', 'ma-0')" v-html="content" />
+        <p :class="classes('comment-sub-item-right-content-txt-copy', 'ma-0')" v-html="content" />
         <v-btn
           :class="classes('comment-sub-item-right-content-btn', 'pa-0')"
           text
@@ -57,6 +53,8 @@ import {
   ref
 } from '@vue/composition-api';
 import { VLayout, VBtn, VAvatar, VImg } from 'vuetify/lib';
+import marked from 'marked';
+import DOMPurify from 'dompurify';
 import classnames from '@utils/classnames';
 import helper from '@utils/helper';
 import { $t } from '@/i18n';
@@ -91,6 +89,11 @@ export default defineComponent({
     };
 
     return { classes, isMore, meta };
+  },
+  computed: {
+    content(): string {
+      return marked(DOMPurify.sanitize(this.subcomment?.content ?? ''));
+    }
   },
   methods: {
     formatTime(time: string) {

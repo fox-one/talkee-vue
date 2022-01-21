@@ -14,7 +14,6 @@ import SortBar from '../SortBar';
 import LoginBtn from '../LoginBtn';
 /* import types */
 import type { CreateElement, VNode } from 'vue';
-import type { IComment } from '@/types/api';
 
 export default defineComponent({
   name: 'Talkee',

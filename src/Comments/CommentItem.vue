@@ -16,12 +16,8 @@
             <span :class="classes('comment-item-right-top-time', 'f-caption f-greyscale-3')">{{ created_at }}</span>
           </div>
           <div :class="`${classes('comment-item-right-content', 'mt-6 f-body-2')} ${isMore ? classes('comment-item-right-content-more') : ''}`">
-            <p :class="classes('comment-item-right-content-txt', 'ma-0')">
-              {{content}}
-            </p>
-            <p :class="classes('comment-item-right-content-txt-copy', 'ma-0')">
-              {{content}}
-            </p>
+            <p :class="classes('comment-item-right-content-txt', 'ma-0')" v-html="content" />
+            <p :class="classes('comment-item-right-content-txt-copy', 'ma-0')" v-html="content" />
             <v-btn
               :class="classes('comment-item-right-content-btn', 'pa-0')"
               text
@@ -71,6 +67,8 @@ import {
 } from '@vue/composition-api';
 import { VLayout, VBtn, VAvatar, VImg } from 'vuetify/lib';
 import { Intersect } from 'vuetify/lib/directives';
+import marked from 'marked';
+import DOMPurify from 'dompurify';
 import classnames from '@utils/classnames';
 import helper from '@utils/helper';
 import MetaBar from './MetaBar.vue';
@@ -143,7 +141,7 @@ export default defineComponent({
       avatar_url: comment?.creator?.avatar_url,
       full_name: comment?.creator?.full_name,
       created_at: helper.formatTime(comment.created_at),
-      content: comment?.content,
+      content: marked(DOMPurify.sanitize(comment?.content ?? '')),
       isMore,
       isIntersecting,
       item,

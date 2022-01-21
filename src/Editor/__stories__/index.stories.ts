@@ -28,7 +28,7 @@ storiesOf('Editor', module)
       user_id: "3c85aed0-bb23-4b0e-b352-488faeb9f69f"
     })
     utils.setAuth({
-      token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiM2M4NWFlZDAtYmIyMy00YjBlLWIzNTItNDg4ZmFlYjlmNjlmIiwiZXhwIjoxNjUzMTQxOTE5fQ.zIZv_2cqgs6raNqH4_O6625K0cPjrAfx521vKtD_ExE',
+      token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiM2M4NWFlZDAtYmIyMy00YjBlLWIzNTItNDg4ZmFlYjlmNjlmIiwiZXhwIjoxNjc0MjczMjA1fQ.d4HnycRupwrAqJBrho5WVnhb3Oz4PIbFvwrDha_eN90',
       user_id: '3c85aed0-bb23-4b0e-b352-488faeb9f69f'
     })
     return {
