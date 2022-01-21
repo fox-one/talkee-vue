@@ -141,7 +141,7 @@ export default defineComponent({
       avatar_url: comment?.creator?.avatar_url,
       full_name: comment?.creator?.full_name,
       created_at: helper.formatTime(comment.created_at),
-      content: marked(DOMPurify.sanitize(comment?.content ?? '')),
+      content: marked(DOMPurify.sanitize(helper.urlify(comment?.content ?? ''))),
       isMore,
       isIntersecting,
       item,
