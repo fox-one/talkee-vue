@@ -17,6 +17,9 @@ pnpm i -S @foxone/talkee-vue
 ### Usage
 ```js
 import Talkee from '@foxone/talkee-vue';
+import "@foxone/talkee-vue/lib/index.css";
+
+Vue.use(Talkee);
 ```
 
 ## Dev
