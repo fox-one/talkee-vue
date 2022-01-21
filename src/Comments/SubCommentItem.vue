@@ -92,7 +92,7 @@ export default defineComponent({
   },
   computed: {
     content(): string {
-      return marked(DOMPurify.sanitize(this.subcomment?.content ?? ''));
+      return marked(DOMPurify.sanitize(helper.urlify(this.subcomment?.content ?? '')));
     }
   },
   methods: {

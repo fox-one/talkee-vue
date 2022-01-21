@@ -207,6 +207,13 @@ export const helper = {
       return true;
     }
     return !window.IntersectionObserver;
+  },
+
+  urlify(text: string) {
+    const breakRegex = /\n\r?/g;
+    text = text?.replace(breakRegex, '<br/>');
+
+    return text;
   }
 };
 
