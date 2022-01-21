@@ -16,9 +16,15 @@
 
 ```vue
 <template>
-  <Talkee>
-    {{ 'Hello Talkee' }}
-  </Talkee>
+  <talkee
+    v-bind="talkeeOpts"
+    @init="talkeeInit"
+    @error="talkeeError"
+    @comment="talkeeComment"
+    @login:success="talkeeLogin"
+    @login:fail="talkeeLogin"
+    @keyboard="talkeeKeyboard"
+  />
 </template>
 
 <script lang="ts">
@@ -31,6 +37,16 @@
     }
   )
   export class App extends Vue {
+    talkeeOpts = {
+      siteId: 1,
+      slug: `your slug`,
+      loginUrl: "",
+      apiBase: 'https://www.api.com',
+      commentLength: 800,
+      reply: false,
+      favor: false,
+    }
+
     mounted () {
       console.info('mounted!')
     }
