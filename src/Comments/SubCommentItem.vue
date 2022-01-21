@@ -92,7 +92,8 @@ export default defineComponent({
   },
   computed: {
     content(): string {
-      return marked(DOMPurify.sanitize(helper.urlify(this.subcomment?.content ?? '')));
+      const md = marked(DOMPurify.sanitize(this.subcomment?.content ?? ''));
+      return helper.urlify(md.substring(0, md.length - 2));
     }
   },
   methods: {

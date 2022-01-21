@@ -118,6 +118,7 @@ export default defineComponent({
       less: $t('content_less')
     };
     const commentData = ref(comment);
+    const md = marked(DOMPurify.sanitize(comment?.content ?? ''));
 
     onMounted(() => {
       if (helper.notSupportIntersect()) {
@@ -141,7 +142,7 @@ export default defineComponent({
       avatar_url: comment?.creator?.avatar_url,
       full_name: comment?.creator?.full_name,
       created_at: helper.formatTime(comment.created_at),
-      content: marked(DOMPurify.sanitize(helper.urlify(comment?.content ?? ''))),
+      content: helper.urlify(md.substring(0, md.length - 2)),
       isMore,
       isIntersecting,
       item,
