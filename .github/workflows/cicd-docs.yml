@@ -8,6 +8,7 @@ on:
       - 'src/**'
       - '*.md'
       - '**/*.md'
+      - '.storybook/**'
 
 jobs:
   build-deploy:
