@@ -5,12 +5,7 @@ module.exports = {
     'browser': true,
     'es6': true
   },
-  extends: [
-    'eslint:recommended',
-    'plugin:vue/recommended',
-    'plugin:@typescript-eslint/eslint-recommended',
-    'plugin:prettier/recommended'
-  ],
+  extends: ['eslint:recommended', 'plugin:vue/recommended', 'plugin:@typescript-eslint/eslint-recommended', 'plugin:prettier/recommended', 'plugin:storybook/recommended'],
   globals: {
     'Atomics': 'readonly',
     'SharedArrayBuffer': 'readonly'
@@ -23,11 +18,7 @@ module.exports = {
     sourceType: 'module',
     extraFileExtensions: ['.vue']
   },
-  plugins: [
-    'vue',
-    '@typescript-eslint',
-    'prettier'
-  ],
+  plugins: ['vue', '@typescript-eslint', 'prettier'],
   rules: {
     'vue/html-indent': ['warn', 2],
     'vue/html-self-closing': ['warn', {
@@ -39,7 +30,9 @@ module.exports = {
       'svg': 'always',
       'math': 'always'
     }],
-    'vue/html-quotes': ['warn', 'double', { 'avoidEscape': true }],
+    'vue/html-quotes': ['warn', 'double', {
+      'avoidEscape': true
+    }],
     'vue/singleline-html-element-content-newline': ['off'],
     '@typescript-eslint/indent': ['warn', 2],
     '@typescript-eslint/no-empty-interface': ['off'],
@@ -52,26 +45,25 @@ module.exports = {
     '@typescript-eslint/explicit-member-accessibility': ['warn'],
     '@typescript-eslint/consistent-type-assertions': ['warn'],
     '@typescript-eslint/no-inferrable-types': ['warn'],
-    'no-console': ['error', { 'allow': ['warn', 'error', 'info'] }],
+    'no-console': ['error', {
+      'allow': ['warn', 'error', 'info']
+    }],
     'semi': ['error', 'always'],
     'prefer-spread': ['warn'],
     'no-unused-vars': ['off'],
     'no-extra-semi': ['warn'],
     'quotes': ['error', 'single'],
     'linebreak-style': ['warn', 'unix'],
-    'prettier/prettier': [
-      'warn',
-      {
-        'printWidth': 50,
-        'tabWidth': 2,
-        'singleQuote': true,
-        'jsxSingleQuote': true,
-        'semi': true,
-        'trailingComma': 'none',
-        'endOfLine': 'auto',
-        'arrowParens': 'avoid',
-        'rangeEnd': 0
-      }
-    ]
+    'prettier/prettier': ['warn', {
+      'printWidth': 50,
+      'tabWidth': 2,
+      'singleQuote': true,
+      'jsxSingleQuote': true,
+      'semi': true,
+      'trailingComma': 'none',
+      'endOfLine': 'auto',
+      'arrowParens': 'avoid',
+      'rangeEnd': 0
+    }]
   }
 };

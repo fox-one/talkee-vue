@@ -90,14 +90,12 @@ export const helper = {
     return getStore('profile');
   },
 
-  setAuth: function (data: { token: string; user_id: string }) {
-    setStore('jwt-token', data.token);
-    setStore('user-id', data.user_id);
+  setAuth: function (token) {
+    setStore('jwt-token', token);
   },
 
   removeAuth: function () {
     removeStore('jwt-token');
-    removeStore('user-id');
   },
 
   getRedirect: function () {

@@ -16,6 +16,7 @@ const request = async function (opts): Promise<any> {
     'X-LINKS-SITE-ID': params.site_id,
     'X-LINKS-SLUG': params.slug,
   };
+
   if (opts.headers) {
     headers = Object.assign(headers, opts.headers);
   }
@@ -52,11 +53,13 @@ const getMe = async function () {
 };
 
 const auth = async function (code) {
-  return await request({
+  const resp = await request({
     method: 'post',
     url: '/auth',
     data: { code },
   });
+
+  return resp.token;
 };
 
 const getComment = (id: string): Promise<IComment> => {

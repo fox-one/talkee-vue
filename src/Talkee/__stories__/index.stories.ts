@@ -22,16 +22,29 @@ storiesOf('Talkee', module)
       components: {
         Talkee
       },
-      template: `<talkee
-        siteId='1'
-        slug='7000103413-course-728'
-        apiBase='https://talkee-test-api.firesbox.com/api'
-        loginUrl='https://mixin-oauth.firesbox.com/?client_id=2827d81f-6ae0-4842-b92f-6576afe36863&scope=PROFILE:READ+PHONE:READ&response_type=code'
-        :reply="true"
-        :favor="true"
-        commentHeight="60vh"
-        commentLength="512"
-        class="pa-4"
-      />`
+      methods: {
+        handleLogged() {
+          console.log('logged')
+        },
+        handleError(error) {
+          console.log('error:', error)
+        },
+      },
+      template: `
+        <talkee
+          siteId='2'
+          clientId='61504be8-a9da-477d-9e18-448ac3780919'
+          slug='7000103488-course-2367'
+          apiBase='https://talkee-api.mixin.fan/api'
+          :reply="true"
+          :favor="true"
+          commentHeight="60vh"
+          commentLength="512"
+          class="pa-4"
+          @login:success="handleLogged"
+          @login:error="handleError"
+          @error="handleError"
+        />
+      `
     }
   });

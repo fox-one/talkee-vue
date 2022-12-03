@@ -1,5 +1,6 @@
 import {
   ref,
+  computed,
   defineComponent,
   onBeforeMount,
   onMounted
@@ -32,15 +33,15 @@ export default defineComponent({
       type: [Number, String],
       default: null
     },
+    clientId: {
+      type: String,
+      default: null
+    },
     slug: {
       type: String,
       default: null
     },
     apiBase: {
-      type: String,
-      default: null
-    },
-    loginUrl: {
       type: String,
       default: null
     },
@@ -61,59 +62,49 @@ export default defineComponent({
     const {
       prefixCls,
       siteId,
+      clientId,
       slug,
       apiBase,
-      loginUrl
     } = props;
     const classes = classnames(prefixCls);
     const total = ref(0);
     const order = ref('favor_count');
-    const isLogin = ref(!!(helper.getToken() && helper.getProfile()));
+    const token = ref(helper.getToken())
+    const profile = ref(helper.getProfile())
+    const isLogin = computed(() => !!(token.value && profile.value))
 
     onBeforeMount(async () => {
-      if (siteId == null || slug == null || apiBase == null || loginUrl == null) {
+      if (siteId == null || slug == null || apiBase == null || clientId == null) {
         context.emit('error', 'missing params!');
         logger.error('missing params!');
         return;
       }
       helper.setDefaultParams({
         site_id: siteId,
+        client_id: clientId,
         slug,
         api_base: apiBase,
-        login_url: loginUrl
       });
-      if (!isLogin.value) {
-        const query: any = helper.getUrlQuery();
-        if (query.code) {
-          try {
-            const auth = await apis.auth(query.code);
-            helper.setAuth(auth);
-            const me = await apis.getMe();
-            helper.setProfile(me);
-            isLogin.value = true;
-            context.emit('login:success');
-          } catch (err) {
-            context.emit('login:fail', err);
-            context.emit('error', err);
-          }
-        } else {
-          helper.setRedirect();
-        }
-      }
     });
 
     onMounted(() => {
-      context.emit('init', { ...props, isLogin: isLogin.value });
+      context.emit('init', { ...props });
     });
 
     return {
       classes,
       total,
       order,
-      isLogin
+      isLogin,
+      token,
+      profile
     };
   },
   methods: {
+    handleUpdate() {
+      this.token = helper.getToken()
+      this.profile = helper.getProfile()
+    },
     handleKeyboard(state: 'rise' | 'fold') {
       this.$emit('keyboard', state);
     },
@@ -168,7 +159,9 @@ export default defineComponent({
           /> : <LoginBtn
             vOn:error={this.handleError}
             prefixCls={prefixCls}
+            clientId={this.clientId}
             {...{ attrs: this.$attrs }}
+            vOn:update={this.handleUpdate}
           />}
         </div>
         <Comments
