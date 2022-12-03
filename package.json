@@ -143,6 +143,6 @@
     "vue-loader": "15.9.2",
     "vue-property-decorator": "~9.1.2",
     "vue-template-compiler": "~2.6.8",
-    "vuetify": "~2.5.14"
+    "vuetify": "~2.6.10"
   }
 }
